@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAZIMFIX CRM — Dubai Facilities Management & Revenue Engine</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07120B;
+      --bg-card: #0D1F14;
+      --bg-card-hover: #122B1C;
+      --bg-column: #0A180F;
+      --gold: #F4AE16;
+      --gold-hover: #E09E10;
+      --gold-subtle: rgba(244, 174, 22, 0.12);
+      --emerald: #10B981;
+      --emerald-dark: #065F46;
+      --wa-teal: #128C7E;
+      --wa-green: #25D366;
+      --danger: #EF4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --warning: #F59E0B;
+      --warning-bg: rgba(245, 158, 11, 0.15);
+      --text-main: #FFFFFF;
+      --text-muted: #9CA3AF;
+      --text-dim: #6B7280;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(244, 174, 22, 0.35);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Header */
+    header {
+      background: rgba(13, 31, 20, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-gold);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .brand-logo {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-crm {
+      font-size: 0.65rem;
+      background: var(--gold);
+      color: #000;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    /* Role Selector - Kordic Feature */
+    .role-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-column);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-gold);
+    }
+
+    .role-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    .role-select {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .role-select option {
+      background: #0A180F;
+      color: #fff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #07120B;
+      box-shadow: 0 4px 12px rgba(244, 174, 22, 0.25);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--gold);
+    }
+
+    .btn-wa {
+      background: var(--wa-teal);
+      color: #fff;
+    }
+
+    .btn-wa:hover {
+      background: #0F7366;
+    }
+
+    /* Sub Navigation Tabs */
+    .nav-tabs {
+      background: #08160E;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .nav-tab {
+      padding: 12px 18px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .nav-tab:hover {
+      color: #fff;
+    }
+
+    .nav-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .tab-badge {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+    }
+
+    /* KPI Summary Row */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      padding: 20px 24px 10px 24px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    .kpi-card.audit::before { background: var(--warning); }
+    .kpi-card.stale::before { background: var(--danger); }
+    .kpi-card.verified::before { background: var(--emerald); }
+
+    .kpi-title {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-value {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .kpi-sub {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    /* Main Container */
+    main {
+      padding: 14px 24px 40px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* View Switcher */
+    .view-content {
+      display: none;
+    }
+
+    .view-content.active {
+      display: block;
+    }
+
+    /* KANBAN BOARD */
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(290px, 1fr));
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 24px;
+      min-height: calc(100vh - 280px);
+    }
+
+    .kanban-column {
+      background: var(--bg-column);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      max-height: 80vh;
+    }
+
+    .column-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--bg-column);
+      z-index: 10;
+      border-top-left-radius: var(--radius-md);
+      border-top-right-radius: var(--radius-md);
+    }
+
+    .column-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .column-bullet {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .column-header h3 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .column-count {
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .column-cards {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Lead Card */
+    .lead-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: grab;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .lead-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      background: var(--bg-card-hover);
+    }
+
+    .lead-card.stale-lead {
+      border-left: 3px solid var(--danger);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .lead-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .lead-loc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    /* Stale Lead Badge (Kordic Feature) */
+    .stale-badge {
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stale-alert {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    .stale-fresh {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--emerald);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .service-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(244, 174, 22, 0.12);
+      color: var(--gold);
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.78rem;
+    }
+
+    .card-value {
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .card-assignee {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+
+    .audit-warning-pill {
+      background: var(--warning-bg);
+      color: var(--warning);
+      font-size: 0.68rem;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Card Quick Actions */
+    .card-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .btn-micro {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 5px 4px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-micro:hover {
+      background: rgba(244, 174, 22, 0.15);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .btn-micro.wa:hover {
+      background: rgba(37, 211, 102, 0.2);
+      color: var(--wa-green);
+      border-color: var(--wa-green);
+    }
+
+    /* ACCOUNTANT WORKFLOW TAB */
+    .audit-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .audit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .audit-table th {
+      padding: 12px 14px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .audit-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: #fff;
+    }
+
+    .audit-badge-pending {
+      background: var(--warning-bg);
+      color: var(--warning);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.72rem;
+    }
+
+    /* INVOICING / QUOTE ENGINE */
+    .invoice-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .inv-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .inv-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .inv-num {
+      font-weight: 800;
+      color: var(--gold);
+      font-size: 0.95rem;
+    }
+
+    /* MODAL WINDOWS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #0D2015;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #0D2015;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    /* AI Pre-Call Briefing Layout */
+    .ai-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ai-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .ai-tag.blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+    .ai-tag.green { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+    .ai-tag.red { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+
+    .ai-content {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #E5E7EB;
+    }
+
+    /* Dubai Tax Invoice Printable */
+    .tax-invoice-sheet {
+      background: #FFFFFF;
+      color: #111827;
+      padding: 30px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .inv-print-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .inv-print-table th {
+      background: #0D2015;
+      color: #FFFFFF;
+      padding: 8px;
+      text-align: left;
+      font-size: 0.75rem;
+    }
+
+    .inv-print-table td {
+      padding: 8px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      header { flex-direction: column; align-items: stretch; }
+      .header-actions { justify-content: space-between; }
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#07120B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LazimFix CRM">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="brand-wrap" onclick="switchTab('pipeline')">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAACBCAYAAAAc2+7KAABjjUlEQVR4nOW9d7htWVUn+ptppZ1PvDlUupUooIpQgaJAomCJQFEgqIiILSiNXXY3TT+fbbe2tv14Pv18bdvyxICoYECgVFIVoaicw711cz735H12XmGm98dca+99zg1VtLHp+X37O2fnteeYc4Tf+I0xSW3HLIphrYW1dvg/ADAwjA9DqHt+eN+4f/K/1AKAAUDBrIaJ+5yodLpeEW941zvecscHf+K9l4eBECdPHkepXAUPyukf/NFnHvnVj3/6o7VG8MggNmm9MYM41SDUwtgEMDFIlvqzE/5L7vzMp351okxfsnrmhB8JC04kAIMgiNDuD+D5JWQGaHb6uOTq69I773rskR/7qX//0cnJyiOJ0imhDAoMUhmIIIDS638zgcl/dz6owIVG8V4AIISc9fy5HvuHGPy5XlBchj3nkwZOrCZ/gQEZvlJTAsUF1ROTU+Xrf+5jP/vWd9/+tm2Hn32SL59Zw86dO9DtxTBawiiJwAN83wPjAlJKdLt9TM9MIk6SC18fIQAICBm/Yfj//y6Dj68oYLSCir9WWxBChrvVUnefUAJrgSQZYGZ6Eq3WGigMyqUIg7jHjNIlo+XWW66/7tp/8zM/9c6bXn7d9adPHKyatE9mGhUk3RaUNOAehc/dd8ksAWECxhhUKhWkWeYuknMYmcJaC8bYUFBCcEAbEEKglIHvh8ikAmE+fN+HUgqEEHC+fudYayGEGD42/psL0ZP8OWPPuYTXfVbxXmvtWQvoXN8x/vdcrwEAYwyMMWBsvUY83/c/54400CCGAoSAUgpLCQADozW01pho1DA/dxIX7dqJJO6jubLIKEGjEvkveuOb3vD6//uX/+MNaa955alj+2scik01SlBKwlqDahQgVgbUAmRsvgxxG3x8PxXCc1f/fHcaxcaF+t06nlu1EgKb2w03tRSEWhBYCABJr4M9l+zGwf1HSL0m+FQtahid3vizP/NT7/mXH/zAdSbtz6hOEhqTUa0G6Mc9lKMAgR+h1RuA+pV16hD5TgchAEUuNLruNlq4FxBoLuxzCdJaC3yXCfg5Bck5hVIKxhi4ibNgloAxgHEKWIvD+4/QKy7ZFK4sL8w2ytG1H/8v/9d7Xv2qV964OHe0sTp/igcCZLJWBQtCEDWAlhk09eBxAWUBmgvEgrr5J7nLMW7rxmzg2fv1/MOZBPf/d7PNfG7VSgBLUeg2UGuhrQI1FpQB/U6H7d4xUV+eX7j6ja+56aZf+aWff82mqYlrDjz9WMPIAZusR2DEIIk7sDJDwDmE8JBJjSxW4KUSCBnZPfePGWqBcUGOj+crFGMMrMXYAii80++OUczDhQVJDJTSQyeDMQKrNVSawUCDWrCZycrk6mLzho/89Hvf/bF//ZEXtZbmN+9/+rFo0+wU63UyEGQwRkHLFEQrMI+DWAujNJyaZABo7u67izL5d1tCh4K0GAm1kGHx+IXGhWzkuHD/Vx/PuSO1NQCcQ2ItgzEKIIZyTkUUiLrv8Rt+789+772vePl1N+5/6rF6ySOiGnnk2MF92LFjCzKdoN1aQaNcxeat25D1EzRX2xBeGTO1SbRSgORBDCEEhgCgBMYCdOOu/J8YG1Xrd4fYzh7cORBm/aNkdJ8QAmMstNaAUbBGMg5VrQXR7kYtvOLuL/3N7Um/df2pI89OlkLKhM3AKXDJRTuQpjHKUQjOJlH2Q6ytrqK5uopNs9tQqkzg0LEFlOqb8u9xnmtxozmoMAyDctU7clgtit1EzyMdt/jsBo+YFr8MsBTE6g2/vXhd4SE/36n8px2UUA5QBgMLUALCAKklUpkCFAj8ECrTKEcBPEYYknRSWH3zD7zhpjse+ebf3qG7Z25Om6cnzWCZBSRGFBAQm6Hfa0MriXSgwKyHJJPQFKhO1tBXfcw35xFWfEirEAQBssw5PcwAHmUQhEIQwMLAWg2tJRgjIMRCw4JzPowTLTQIsTAyg+cJGKsAo0EIQeD74BQwGrCGgkAAhMKMLRLnCxt3s9Q5BZa72waPeeONUg5KeW7n2VnPnyuutNYO48SN8W1xI4TkMTM56znALWpKR5/P260WvECgXI7AGEEmU0RRAMYY0jhBc34euy7ZTVfn5wS1WX3TZHTDR+/46ff++PvffcOJA3vrHFIwm1BPAIJYEC1BYMA5BecelLSwhAKGwMLCWAtDNIxlUFaBUAIw97MJIcXPh4WzhefaENaOa5D12mN9cL9B0wCwGIUz1hZKfRTHjnY8zX3jsz/jn9Nw0QTAZ2en0el0INMMNBAwSiNOE4emqAy7dm9l8yePVQOK3S+48pIrfvPXf/X2F734qutPPvvUZNxvM0EsAkHh+x4IDJRSQ+fIrRgDCut2ki0me4SEUGLXPTbyWp87wLDWuoWwQdrjcN353oex1f2/8ih+AwUApTIk6QCcEIS+QJYMIOMBZqcm2PLc3GTVJze/74fecceX7/zLOy7avunmg489MtleXWRT9RoYNDxOwegIVnJ21SCOYzBYcErACQUlFpRSMCZGai1XD6AAoRhBgITA0vUC2ahezvejivHdHDduHHxlZQWzs9OI+10sLS5iZrqB3Tu2o73W5AsnT01snghv/IX/46Pv/cF3vv2Gg/ueqRObimrZp1umtuDE0YOYbNTAGQBtYGQGRhg8LpBphSyL4UciV1LO8zUEABgIoeu8yecTUpyVnSFnx4QbhTnutZ7r855nNHqB5871Cc9/AT2XVniuxUipMw48CDxYLUEJEIUCMonpfGvFCzzeuOaK3dd//D9+7Ecu2bn1xhP7n5zcPFlj83MrWGzNQ9ZK2LZ5BjpLQYweoj9CCHDuopqMUFitYBkDrHM4TIHcGEAqA48yGOTAAzGwJEeQrAWGFuzCP37cgSAbHIICEHCPjXZ4EZde0Csl5sLP/zMYQ83mC4b5E6eQ9jvYuXUzE1TX4659wStueOn3/sbHf/n9N95w3Y2nj+ydJLLPFueOoBZ52DY7AStjcGgYnUKrDNYoWGNglM69SQbf9wFiQOz4buIg4LBgMAY5bHTuUXhvGx8r/p7vNv7aC+3I76bBjVbYvGWKGJ2xZ58+OjEziet/4ed+4p0/ePs7rgqZ3vnYPXdVdm2dZnG/C08QEJWAUIKJWhmrKwvwfd+lWgyBtRpSSvfBnnvcmjyssYATIgUhwqG2xMLksaHzFs06lTmuoka76gJA+Nj/6wU+UsXFGN+Z/yuPYRqLaEUtI0Gv2Zm+5orZl/7iL/z797zme2658eDevfWB6fOZRolmgzUwAlirYYxGlhBoYhH5PsIwRD9JkKUKnHNE5TKEEJDaIE0zCE7RbDYxOTGLSi3E/EITUZWYzVu3G97qk7VObBuNCUjpUKSRY0MAk6tCEHDORq425zDGwAs96CwDjAHy3J3v+8jiFEopAM4BoxRgjEFpm9+nIOfI8w3BeXfP/U+/c4dpfHGQ51gpz2UDx83E+GvHnUUA4FEgKnFv7Ypb33TLy37h//zom2uhd+0j932jsWl6ignLQNQABNL9eGrzwJeA5h5llmWI/AC+R5AkGXq9HoQQYMIDIQy9/gA7dl4MAo7Dx0/hokv2aBrVel/7ytdXYoXgsitfUAZhIAyghKMIHgkhYJTCGn0Blem8YEo5QCmUdDnS4gduxGY3TtDz82r/eceRxeCd1urOj97xL9//1ltfd/10rbx9dfFkeboasumqhyMHDmHzVBWUApQChNB8BYwmsp8kqHoePOFBSg2pctVKGQyl2Lb7Yuzfux+V6gS2bNut+33dvPtLf/PoZ/7ic9+Oqo3td1zxwu+xhGlC4JLWY3aNELIuQz9u84YICNxuMyBQSoHmO3EY1uTjXNmP5x9H/l2EeX4f4O9zcI/R0iW7t1+ybdPMrv1PPhJtnipRr+Lh1NH9uPqKS9BaXchZAbnHaQyU1UP81VqLLFUw2k1cEAQQwhGWtNZYPLOIam0SjclNutNL1/7yr/7m3s/f+eU/ara7e71y+0pt8AJjmbYohGOgjQXM2ROwPh+J4XdwykAoGYtj2RBwuNCOBL6TQOGf96C+oPTQwX3CZLGYqIWUEQU96EDFbRCTwhgDpS2kttAG0NbBZ8YSWFAEYQnKWKQyg83TUlJqpGkKoy3WWh1sufhSu7za6v7+H/7pw3ff/e1PLS6tfXu12T+tNFmx4Fnh8KxfvfScHu1GWyGlHC6ooQPzHMDB3+dYT/r6zm9/X4NqpRB4HjixgJForSwi9Cmuuvxi7N/7lBOk0ZDa/bWEggkPwvfgBT4oEyDUTXoxiVprMMZQLpdx+bXX4YlHnpDfvOf+k8/s3f/5IyfmHur0ZbPdMZIxT4MKS+DiTFAHBHPKzvqR5/rhG8HnQp0aY4a28nzhx9/3RP5TD14KBRixOHbkAKjpY/PMJAadZZR4GVs3T0NSDmMBaEBbR/NwvB1nz6RxoDhjBAYWlFAHClAGY2BOHDqsHnjo4bWlpe7eVmfw5KnTg1VlocpVzwujKkCcfSvsHs2F6ISb7yycHScO3W4+SqkWgtRaDz3cYpyLf/rdEH4Ugw96EtOTE2jU61icWwaxIZTMsLKyAsoZwmodTAMSEsq61Q/pJmm4CwCYgiQlnBfZT5XudNq9T/3JX81BlJ6662v3/OnT+1qHZqZFOsi07acZQCl0LiStcySfalhwGGjA0HWCLIYTqIaFEyQZS0AD6zFfazX0eXYkMGIjUGCDwfxfw1stBmcMWJyfQyW6AbJWR5YphFEFBBpBGGKt3YbwAzDiYjelUnDOnRcLIB3EqDXqSBONfpqhFFRNuTGj7nvokdbd9z76+PFl86Unn3ns4YWF3n7robUWS8M9gX7fgAUcnsfR7nRAOGAJgTYG0mZgvg9YA6oojBpNqlISMM57NsaAGAOtM3BroZUB4QKCEmjOYIyGMhqUA8pIgDJYo0G5hzTLnFOWs/Y0QQ7J2SHxhILkwr0wt/RCo4jzgHNDixd6HgDIuqz5+f4HuJaA1SYXkoKmLgCHAdI0QxiWwDmHzR0RnWcwKCyMVShHAWSqIKVBY2JGr/Wy3j0Pf+PEfQ8/vveJfUf//ORC8ujCQnPZGJZQnxgReGAcAJPQWjrUh9o8jUWdZ2wBEAtjXbJ3HBMt9tEoULbr+DyjGci1BrHnoMHm1JUcS3VA/igdZIkBuQB0+J2Mwlafz+Zv1DQbx/O14nz8vc5poKDUxW9SSjDhdqIlJs/E5xNmLYwGMmvAOIXne7Y7iLsPPfLU/X/1N3d97tiZxSfnFjuHm13bSTKra+WKpcyCcQqarzKlzNmIRZHgtRbOOJ89LgTVrZuEsYnaCNH9Y41zCmeDAC/8vud30bwIvIFCkM5zNACUUlAmBmNOBRXwFqUUxFJQCmRZhpLHARbIB+558ORnPnfnnxw4Mvf1zPKVZltnXqlseEARhBGypI9MSvgec7zYAibbsPqJdTybYYbiPD/0+YYX4y87Vyz6Dzk2Uv437sDi+fPnUp/fdZ6TRTe+ihkMCLEAGYe8CjySgosQSaoQloU9fOR4/6GH5k5aH6uKqEQqIBI+lHXAuTQa1BpQKsBYPqnWOUvUYixf6UZhHobMAZwj6zGG1pwNlq8X9sa01fPZGX/XUYAjRag0/nd4TTh7wY6u63kKknPkWXuWOzEEhLid53meuxhOYUAgrduVUkrAEFeaJjz04wybdkxjy46LjQKUVjCpBaY2TSNWxtlXRsE9l2QmjEEbt5vPNSgIqHW+qCM0rR8bBXmhlNY/NWvgXED3uR4rxkYBP99lxgkZwy3zN2utYY2B53FkWZaHBY6KZgqc0ziapDUEhHAwEWDz1h0QAWAsByc+/KiGuNeBNsZlEpgAtcWqHF348OKtczY0zg8AnLXjnkOQ7rUXnuB/yFFkYcbHuKe6Md4dH9ZakOfpc3Ep3c7IsgxKKUhYWJOCWA3GHBDtaHl2qFJdJsQxz4XngVuLlZUmOt0YaQaE9SoGiuP0/BLCcghlNDLlcpXaERFBKeD7/sipMYVDMuLZFk7Vc41zufUXGv+YNlJKeUGIblzQfyevlXMgDENwzpEkCaJKgMbEBLRM0e93wX0PhDNopZFlGQjj8DwPxFIkqUTWjyGCCoTwUSnXYAmQpBo0KMMLHKOKc+5iJs7A8z1HqfNaBWWw1kIIOkRaGGPQWjuzaC0oIVB65GhJmeT2zSBOYnjcfYbneaBCIJXpkHLigAG3+HQ+WZSQ4We5TMiYqsvpIDT3CQz0eaYuf/1z7Gx6DmfnXCjT+T6LPEdCc4hwGTPa/kEQgFKKJElgtYQQAqmS+RfQPA/pJoARDh8U/V42MuJwrmbBCieMweRx3oVxEnrWX5NrADqm8s/1Q4MgyJPeFkpKEDDHHyJ0GMP97zCoMchXP4Hv+0NBZjny4RjaDke1xIEHWiponQf0GHligNlAp1j/ZRsz584rXW8ETP66YRQ1FGL+GRtWsxBiCJRLKR2oMQaY/+8y1oUfxbY3piAVE3DOXaxT5PvUaMKMQU6FMCMbmlNCCMmxTljA0gtxrM4z6DC0uJDT4zxoDaU0tHb4E2MM9rsos/F8Bqd0lEHIsgyMu7oKmrPGHb+FgxACxiyIlY4xkO9Qxyh39HxKisy7ht1QHEMsAEvyYoCzR0HAyqk6MDgb4RymrcYUdZIk4JQAGKl9Sh2p60Ie4Xfb4IUjADhbaZlLQ8EoZFpBZo7qP3QMSOEMEHCbJ5qths3L7wDAWpNXOY2Lgp7n//VjKNAcHDDGDj9lPKwo+KqOIcBzEH30Op1zbf+hx3N6yP9IuCAf10AFMFBMynAHSDnM9RWOhTYKWluAenm5nYI12jk7cIIlIKCWrnf0LQWIdkU755kDg3GBrkdvih3pJpAMr5kQCps3qNDaFcn+7zQ44NiEIBacUzBG4WiPrsRMCDaWPTAgFCBWD50KwhiQv94BBeOrNHd+CiCcUGhiwQqDScwwl2hGhW1w69iAWVcN5QjOGCM6j+A6V9I2locsbDcTQxxz/YJxn+eI0+MaY+POMc7OXnDDuRrOfw6DG+PiyCQZgDIDYyWSVIIaZzdLUQnS5B4qIeDEpZ1ACKylUFpDaY3QUmTSIFMA85lTiZwPY09DWZ7gtS7FxAAKBZgMnsehrYEhDJQJaJmCEwMOC0IoYDU4dULt9/soV30YpQBOwUCQJRmiUgWABgED5wSDJHWxo9aO9moVtDYQHkeSJeDCc4x4RsHBR4tvmP5yKS5CGAwBqF1vb0diP4+kn6d3d77syPMdxWv5+PU5bNqCMYqiUrHf78N129GwUNAU+c4VIKEHE7uVTUleFJrvHmMMrHYqFNbhrTmgNmp7BjtmW10ukti83M5aEGpgtXXvt+dKbTlBaaWQZZlLuxEBQ1wsmWUZ1icji+8aVTETm3cSGUa7ObJEXEA8AvHPUdmN4n3APzUfjzuSthk6MpQ6YbjEKs27L3FQQmGsU6sjW7UeBXEe4xjgm3/mhdJRxev+Z54D8uyC1XmzCpbbeA7G1JCGMhpFJfH5coSj/4m1w1dZFFmZ0S4b9dzL3/P3lIj+nx3DOHIcOB+ufhSPOZjNWOt2CFwsmakMjIYwdjwtk3u4OavZngddKb5j422juB2+O1YIi9HCK76zcHiKUu1i4TDG1gHy44vJ5rZ7fMOePwd49m506vafh30ExrzWcbce1sLmk5WmKYxhgAKMleAUeS0/gTEa1igoq8b4peu5nufajRuTqxuzGutfN3pvQUdRiubOFoGSCaxR4EI6VaoJNCiyTA4LisbHCLRwNEm6ISdJ8q+kDseAQiH0s4U2FO2wueLZ47lqP/6+xlCQBRfUMGeTYF2aKgxDUArn8CgNYgHOBYTgMGBIYgNtnNtfoD3jO+a5KIcb01KkeIysf00BJRaCdE6Mo0yua6yw7r3Pz26tSzATk9tniyGcfj5/xtEHAVv8xrNt6D9qHHk+9UYIged5bgdqAqkSaK1gDMvrQVx4YjQfs4vP74s3qlb32NkVyeOvP5c9Z0JA2hHBSXgewATkWFfL4rkLTSpFvkMxspHOmhrHsDtrz+V9a4kzNSbHjYe9gf6RfaCzbKSbpEIdEvT7fQSBBw0XK2opQYjbIcoQ+H4FRvIhJjtuy/4+xnobiXUZGM45oJxKL/KpAiOkashgOwc4f+4vy0OO4j3EuHrODTvNDm3meNbmnxYOdE5qnssDHO46ZAUAw6YOaZqCMTbMXUopkSQJ+v0+4jgewzlH2G2RmSgmdtw5ATAsVy9eM56uGvd8C1undV7nOFb7WGRtAAwdnjRNh91FOBXD3c8oH5bHZ1qBCbcAB4PBsLay1+uBcw7P86hWmWDECg5DmdUIPAaP0SFIQWGHlWqj37/+dqGk8vlu4+N8tJWN76FJgmEMVqA1hc1x9kiNebPWsQjyiS2a1xb21b1/ZMuK143TSDaO59q9o4sdqePi+orvcQjPqPakuF8sKELgShDO8b2F+UjTFDJJUa2UQawhK0sLpXIY7emsreyJe61KrewxojMomYBoBaMyBKGXsxueH1/oH3JwzgHP8+B5HoRwTow1GhwCWtv8MQbCCbQBjCrCEQ+EeUhiAzpWAleEH/Q7wDovtCKHDLox77oo6TPGII1jcEbAhfNkSZYhkw5vHb5/7LM06Lr7qZQIwxBaZlBZgsD3kCSJoCC7b33zmz7AiBGf+pNPfXrh5OmnGpONbjUMTC/OEEQhOmtN+H64/npz2RW20v4dWOrfyeCeR3OHho3Cj/xHGqOHWQ+jjWN+5+qzyMhTKtat7oKvSnF2HFnsrGKM767hCj5HaHKuUahjKWWOKo3UsFIGWo+85o2b3tldF3NmaQaRq2RDqUuaS0lKQVi65aabLr/22iunVpdPn/nKV76GpNfeF3iiNei29FTgI/A9uBqUsUWb21b7j+3sZJlBlmUYDAbodrugmoHAQhMgTR3dQ2sJaSQINfCFI11JqTFIJKKwDinpcIcMvVG4WDQPLM+ayGIUghwPH0YZD7fziDm7Tcq4HeLc2ToqFUi+0BhG1Vk0jxdd5mX9dTDG0O/3QaxBKfRBrYVhDINej86fOe2daniT777tLTddceklO//HJ/6/z+t08OBEtdxqri7LcqVmlCFjkGPu/oxd63Omuf6eHMN1+q8oGC0mp+C6Fqmt4nEhxBBFKWzUxot6vvbhXM31xsfGXbk+H7m+GfzG69Bag2H9jtyowt3vc6V4nLkFSayBkgYnjh0xJ48dWvmN/+fje3/8fT90yTfv+soPN6ql13aa7asma5Vav9dhsG6hkbPspIG1/3ieLOUcuR0Uw5Vd/F+saM45fN9fx5rmnCOKouHkjAR+/i/baAPHBbLxNes8sqHXOw4KqKFzJqVEmqbIsmy4GIuQxBXgnv9asixDrVaD53lONSfuNAPf58YoKatR1J8/dWLx9z7x2/7mTdM3fePuu/7Vz3zkJ+9YONO8ecum2UnAMJcxcUA/ck3yjw2hc6WQJ2MLTxPDbIVzy52QLLXQJkOi5XBnUiJgjAuIXUWVa2CtizpKU2x56mI0UpCzxpvdk3WY5Yg/S0CscBkQO+oJoG3uTUuH946qk51ghTEgcPbeKg3LcoABeWpqGMgbGALEvR5mpyeHXjplgCDMamtkGsddnQ5YvRwmrZWlwdzxQ+Wo2rjy393xU9uuuuLS0gc//LPUi8L7reUtAyItqLGuoZ4rzycAGXP6iB1XwbkvcgGRm+9gNVDOgTRN0WquoVwqoVGvQyYpVldWUKmUAGIgAgHhMUipkKUKlHAQO0pxcQoMBn2sra1CKfehhHFw4QPUtWlxbDsJEDl0BqwhsHrkBFFowKo8IGcONy2yMKBgnCAeJGDcqfYkSdCo1xF4PmSaYbLegFEavW4XvhCgzBHDLAP8yC1GJiiUNbDUqdPaxASWlpYQRRGklBAsb5CojLZGxgRaCchee2X+VAA5WDjxrLdy+sDUG1913Y1zRx5533VX7npt1uteZWSv1miUGKWAsgZhvQ5FOAaphiECTPgAzfm6VoPAwugMMKm7aQliVM5psnDdTwtXnQ5v1hDHatRYd6NpiuFBIcY4x6dQpcWKj5M+kiQBYwylUmnY7UoIAejC49QAsa6nnLXQNs/kj4PNpMgHFiszvzBb5Addk911F48iQ0Fz73A9uNDtdofAgtVmaBqsNjlwYMc8ATOkkAzDmnOOUcZEZallBJIY2aY2kx7RUHGbNRdPTS6ePnrz5/7sj+74+K9+7A4jzc3L83OTSiYiSQZESqfqo5LrfdtsNtFutxGGIQgBpEwxOzM1mprC899oV59nhoWOMFMBrTX6/T4opYiiaGi/kiRxpOXcEbJFUeyQIzNG9dgQtD/XGDkHZwPoo1FwZtenr6y1GAwG+X0DbSSEYAhDf3gN69Eids5Y9RzXQwAwQogwSlHBqDRK9gAjy2EARoEs7rK42661Vhavevftb3/tA9/+0vsu2rH5lrg72LFpuh51VxdpyaOIuy1Ap9g8O4lGrYpurw1CKDw/xNFjpwAiAMJgCR3dzss1vIAgPY+sQ3L6/T6yLHMELK1H9pBSQBtkaTokMGupzsoNbpyU5xrnKjEbHw7Azv/f4NZbu/76xhEnAKN85HjCeMPt3Cm14dVRxhiCINDGqi6sVlHom9AX4JTA56ALp4/7B599amrzVO3mB7/9jZ+87S2vedfymYWXVH3eoDrhm2cakHEXcbcNYt3ip4KjVK2Ceh40IdCEQYPBEA6Nc9dLPtegxY5L03Q4sVLK4Y0QgsgPUApCh6SkrveOoGwI0Y1/KdswYc81RmHE+sdH77e5A1R4hCZ3xnTuXfrOFlKCOEkQx3GuJeRZ338hBKkY1g6FSwghnFiAM5ZqqdasNiklALQEtQrUKNTKHgKm2dzxg41nn37kpZ/+g0/+yH//9f/4IWEGNwsTT3dX5oNaxaehz6BkikAIZFmGbm+AiclZGCLcjTLofEcWJDT9vI+OyksGiqQw53wIihfC2Yi/FuqqAKjXT8IoFcTGwoYLjXOFHue7n79hXbxWVIwVqrTQFoXdNBjfYc891u9KSvr9vk3TWOks7VBYSa2xFAaCA4xITFRCDNqriISlU2WvfN9dX9j1o+99z6vuv+crP3bDi696HWRydWtpqZH0Wl69FtFS2UccD9DudRHLzAmOUljwoRALFfudDErpSBXpDaq0UD1xHKPf7w8zB4DzdAeDgZtwey619PxQi5FaXQ9kD9NVBRFqGLqsZxJY61gMxSIkjLpOHQQXBBoK/s5G1To+CCHQWhOrNGCtYYQ6rovRKPk+Io+jvbqMXVtnELdX0VmdJ1fv2e3te/Abk0Inr/jcF//iZ37x5372jj0XbXpNazm9JB10KoFgLAx9RFHkcFrCYAnLm/3lpRnF9XwHwqSFl1c4OoXqLHah53lDRlqR6gGAOI7R6/WGGf1zOS3FdH0nY1yYw8+wWHeiXeHZjmdePM8betQOnCgw4BGp6vxCW98ixbonMwDtKIq05wWCc84JIUSlGVVZCmoNiNHIBl1AZWiUA0zWS8h6LdRLgsXt5dr+B7955Qd/+ide+6lP/vaHf+yHXvP+5kLv5XMnTzdq5YD5gqLZXAHGGIV/l0EHAxdI+74/LKtrtVqYn58fqtJil47bU9/3MTMzA6UU4jiGkhKcsiGgXqS8gPVVuUXll6uPVEMUJgi8oQccBMEQoeGUjUGEo91qtRkey0QJQ7fbx9zcPGhePuDUrntvljnzEQQB4jgFAYXv+0jTFNaSYQ7T9wIkSQJCiA4C0Wq1OnvDsNSpVRu81x30+/2+LJfLhjGGbqcFRoHpqQlwaAScgFkNLfsgRsJnlkY+9Q899uDkpbu2vfi3f/P/efuv/erPfqBepq84c3Juymfwqc0opwT9bhuUWDTq1WH+1y3Cs7ueFGOd1qLU1WEWP7ywh4WacjHP+qTvuoxFLpTzje8UEB7/jo2YKowdljHYMSeg2+1CSgnP81Aul11iPFWIBykG/RhKKZTLFGFQgpRyiM8WGqbIWVLKobVGFEWglCPLJBhjtrm6ppabza4FT62FSVPp5scPYJR2J9JqCWsUiM7ArAWzCgwKHAYzk1X61KP3RXMnj2z90Ic/9Mo7P/fZ973khZe89vShuavKPq3ZbMB2bp4FrMSZ06cQeQIT9SqMUSiVSs977ug4D7VQp3mGHACQJSlUJmG1AYwFMRbQBjLNEMfx2cLA+tXyfMa5Q4D1IUmB/hDiyBfu8zl8L0QYluB7IUA5+nGC3iAG8zxU6g30e/FQI8hMDamThdkoNEKhbQI/grWWZhkqQRDsqk9MlmCpCctljzKfDpKMUMIQReXChq6Lo4lxqA2FBScaJ48ewlWXX0xs1uePfetrky950ZU3f+2vP3fHxz76vjvkoHVzt7k02Vtb5ExJRD4DrEQS95HEfQz63dG8bnACzxJkQWjaOKnjFI/ih46PIkw5lzPhaBDkeVEBxz3i4iILQQ4rwIpkbe7zWAsQ4tTt9PQ0QAlW15ro9/tDMF8IgU6nAyEEksTZ9GIHjmuV4vuLODQvV6eEIKyUq1urlXqYSmOkQqYtMdbCKmVgLHE5T0OG+chzzcXM9ARWFs6gEgpsmW6wo3ufqtmsd9XPfviDr/3D3/lv79s+U70p7jSnZdoNQkGoSgYohyF2bd+BIAgu6MWv8yMIWR9ijAutUFmc8zzRPHp+fGVbMx7Uf2cqtchibESBih1tdEHxcE7L+vwlsLSyijSR8LwApVIFhDAoaQBLoaQxjUZDUQqTZZnrfUAI4jiGNa5193jmpuhdoLW2nCMDaKsfZ9kgzmy3289kZoznl5BKiyRVUJrktaPsvKhRpRQCOkUy6CIQFj7XdOHUYd/EnanX3XLDjV/94l+8/3WvvP4N/dX4BTrp1X0G1lxewonjx9Bttc8S2LmECADUJYnlkHC1sUVmkXssYrQ4jtfZmgJrHa2Y0Yc/X2RnY5gw/nnjuVCSN/YlYKD5jixsXREWZamCMdaUSpU0iqLW6urqSd8n/dwThbWORVCU2QPOviil8t2bQGutrMGZE6dOflVbnNm8dbsIowpPpSJeEDnqI+UIwsglEPLQwVLmTsMbiwO77RaINaiWAzAYZP02BBRs1mUnD++f3DxdvemPfu9/fOQ//NxP/oxOB68wOpvcvnVWVMslMj01OcySPNfgRXJYjzkuWmtYjdwjtTBmlP8rStILZ0drwJyDl2KtYwiw59idG21i8dhoMTmMFISBjGGtDnqjmGhMIU0GWF1aBfM8W5vYpI1SnWPHjh3/1sNPPfv1R/f9Gef8lPA8mSQJwJ1dLE5CsNpplDROUAl96CSFEMLoRHb3PvPs3id2bt1erdaDdNBn7XYX2L7ZEMIghA8LCWMUYMkoXWUJXJewgilhsHXzJnQHfaw1lzE1OYVSpYFWpw9uM7Zw8kS1MbPlyn/zr/7llssuuzz6pV/5uHfkxPHHJmY2La6uLsd+UDLFor4QlMldTaF7gc8FKDSM1kgTCZmkyDxH7ShWPc9PF3BepHGeJNnIjxnj31xQkCbnjgLudIb8NLsckdE51cMaA6sUJClyps6eMQDHTy2hWq2gVGsYL6qkqebNp/cfefjub9zz599+eO7ZPsGxaCLqeGFkm50efO7B5MnoLInheZ5roJglCBpVpFoj8kJkqcpOza8c+eQf/emfX7JzUxr4fOvCavvkHkUvVuCe0mCDfh+h7zQB6PrfauDsVq1Ww/LyMjjnmJmcQj9J0e2cBvdC1EohqAjp6WOHvNrUpsl3vvO2V7z0umurP/+f/vNdd/7tl++t1BrPKMg2wJWbVQAYFQ4XZfoAHB2yVqtBK4W4PwA0kA4ScEtQq1Qx1ZgYsgMcBzRGe63t3HMqhoWmKs2Q9AfQGsOYz+MUMBaccBCbc1KtgjIKnueSzYQYGJOBWMATruGuggEPfKRKQ1ogiErodhRKYYRepw1GLCqVivNaS2UQL9J+daZ1eiV+6rN33v3Xn/j0Fz/xrYfmvuZXo71Tm2faVER6ECuUS1UkcYZKpYLQF5BpDBgFSoFavY44zaAJQSfNQPzA0HLUH1h24slDCwtPHz59+M++8KW/eGr/0Qd3XXxFs1Kb0v1ehlqtAZkqxP0YkR+gUi1Da4k0i+F53OVPhQdQhkS6s1FKpZIzWRSwKsVkPYKK2+zUs480tk5HL/3kb/3X9/76L//7D3mmc7OOm9ORpwOb9Wk59BEFPlTmoD0iPPSyBIo7FqFjnqU5KdmMdlwcx1BGItPZGGRGcredoNcbwPMCYKyRPCEYNos920YW94uUlIE17tBO58jkmKk1YMTCWI16tYSk3UYYOg92amoGa2troCYDo8bMbt6iUm1bT+4/cv9ffOHLn3nq2TN7uReeENVar51kOo2bCColaGVBhIfAC5BKiSxbQ71ehZS5SbFuFxHKXHY/rxfgHjfK9LHa1mv3PfjEPVZpc+TIEfPqm156/eUvekn9wJOPikY9opFfQrfbRSJdW5vI96F1wQlmwFiSmACgxMIYDaUylMISoohjrd1hp47uL0/PzOx6x1vfWH/FTS8v/Zuf+4+Nex944hmp7JGEsjb3Qs0YQRj6aA0GIIwi05mr/SgcnYJQ5dp4EvR7ffjGlQsUgmF21Hqs3+8DlkPllcHnDEWeM/dXgACjx9xfDQqDXrsNkiUIfYFOJ0aaKfiihFJQ0dVqubewsnziG/c+sPfbDz76mWOnk/ulQYsSpZS2hgcBhKaoVqvotHuI4xhhEIERhnari+nZCpSKc2pJfr0Yecwwrm8t4yE8P9ZrHb1y1zefuufo0aPqzOmTvVu/93VXXLx7++5aJaymSZettlZhYdBo1ECYO4GoHFbhEBrXB9cldAgsDEAofJ8DRAHWwhcUvTgh7VbTm5icnty2ZfamP/70H279/U/96b5f+eX/6zNp1n+g3Wm1wkpNMasNtQqh4E6DFXGkA8o9AHIogMLu8bw9i+uIZYYMgQLa0gzrvV27/rTyMbGuc9FHgh8L9imFKTg7hECrBJP1MkiWYK2dotWJcfmlu/Tq0mJnbun0w1++62uff/TJ/U/Or+AQ9dFmPtOJcq1EJ6emyNzCGQJjTblcRqffcwyI0B96qhux3SGgQfOCWG1BqAcvYuCRUTLprh461vvWZ/7izlNP7917xYc/9IHbt2+Zun56qjY5ObWJyWwApQw4gEatDin1ut9N8kOkCSyoVWDMR5KmsISgFEWoVCqIsxRLi2dYL8mq9ektV/7oD79ryzVXXlH6yM/869Jys/uMZfRkc+VMTzOmA7+ad9O0I45oEWLkeCOCIBgKOQgiBEEExgSK5rxhuIFlfQ7Au8AM198vKB7jJXhAAV6PfjQQBB7S1AETYQm2UpuW/ZSu3v/o3nt/94/+/He/9PX9f92K8VRYp61YQw+URrnegGWUHjh4OGCcVM6cOS24oCiVSkMkJwzDfCG5kMaFC+vbtFHK4QUhLBFIUo04s6Ai0ixAe6ll9z761NGv/eKv/Prv/emf33nfyfnllVJtMg2jqul2euh0eiNkq2hhUtxgckqHAYyCJwgEJ9AyQTrowGQpSr6HbbPTlNvMW5o7NnnTDS9+xSOP3PeRN772pp+Ku82bNk1Xp6YbFT/td2iWxg5qLLIf8WAAohIYlUFzDd/30eqsQVmFKKJDNnaWZUO1yBy1PMdjz8oinJMlthG3LQpkz6WavcDH8pll1CKBem0iSy2b++o37pu79/5H/2zfgYX7w4g213pG+yVrK/USkiyjS0srglJUdl285eKXvexl1c/+6V891e/3l7nnGc8XkMplS2R+POLwmp1rMNyVlhJoa8GFgDIepMxAwEH8koFJ0tSalYeeWryvG3/ddAeD/mtffeMVL37BFbu377ik2uuusZXlFVRqVffZ6ybAJdKpBbTO4Hk+lAG0VqBgYMQAVgKKAsaAg7LVuaONtXb/mv/x339j23t+8N7Z//RfPt545sDRZ5nGkUzrHqeUDCucsixDJBisJnk3Drcy4ziFMa6BX5H/k1K6w1swKuQZZ5qTouMynHq11uYhxgZe69hZDsOdSClo3jyC+z7CcgAmPJ2BLn3z/ofuvOsrX51rNlv7LCUtr1TTWWcNTFuUBWe9Xr9KDHa/9jU3Xv7TP/3T33v8xOnsc5/7q1Wt5Vo2UJkfRtA6g/DdiUGg+cmyZOykvIKZAAulJQI/RMAjSCkAGBglkSmFREodlsjqoeOdexYWvnr60MFjV7zjbW++/fWvufn6iepsQynKLTXEEgWTY8TFoLkwZZpB5t8b+B5KpSqk0mi3ukgGXVDhSGdykNKyz4PDzzw8e/P1177yj3//d7Z/+ev3Pvl//7+//cmlte7jvJjAAnYLQx8pDGQioVKNWqOOlbWVYfKWju0kQi2UktCG5r3g9NBpISSvp1AXRnc22iaa8/1pDj2vttrwowid7kDxWC596/6H7j650Or7nMTVRt3Mza+hMRlSIahYPNOub5rxXv62H/n+22972w9cfu1LXrL5ycefOCATBFEQkk6vDy1d2q0U1dwRhXJUm1LEvkM7TgDKCRQySK2hrYYQPsAcf0lbAsOY5mHWHmRy730PHZ5bWflU//ixufTWN73uRVdfs2fz8sqZiOSqSuVgOgNg4c6cFkLA9wUyqZHFMbI4QZxKcEoxUa8D1OLU3GnUajUEfpWEfsSPHd5btzS84j3vejv7my9/7X567NRhDgCdTmcIgmvNEccxKkENHgH6/f7QS1VKgVm3MznzQLnAWrMNUG+4q31/JByHBLkWZ5QxpGkGT9DcKaLIUjVEiYoe5xYKlHjQynXqIH4ABQNNGQCarrXaK+VqaGGslTIj9UbEOHQ16ce7XvvKq6/4d//2Z26fnZ54+be/cVdtdqJsVTbwhAcyGAwQhiEyZVAqlZCmKUje59VpDuZI1kMVn3e9tBm0Ia6nD2PQOSfXCyOQIAK0Qr+bGiikIcfKocPNe5qrn28dPzZ/y82vfNkt73z3W16wsjpfFZwKYzUpWr/ILMZErY446btzxbQBy21qOQpAQaCyBIO0j9mpCcecjzugzEPgUUoYEb3WakSMrh7Yd0DwJHH0/0qlAp0GUEohSRJQzQFK4AU+kjQZebbEtQElkOCen6/cMTvjeEtjLvw4DrterTo1LSEzPTqJBzkDwFJoa9HptFGp1TA5M42VhUXbiQe2GpVgspR6zIZaDqa4INf+p//0sdtue/utlz/58P27v/G336p6grCAmFQQV4zK6bhaH2Ur1oVHw1jYFQ1ZCleMRDQInFq1yAnClIAaAjAOEVUgrIVHrNZJd22pKR+5/9G9c2eWV/bOry7e/sM/8q4XTl28e/PpA3sjZg2bnZ5Et9PE/NISKpVyThIY9fqDddkVWOu4TwXdxWgQwsGshbGKwhouKKlwRjgXAsMMR/HjyuUyyn4VTHAMkoKVZuH7AoJyx3i2xVEHavi+cRs5VJ3UgqzjvlMHBORstUJ4lBbleDYHod3z9akGjNbodtu45OKdMIOUzp88IXxGqipO97zpja942b//6B2vb9TLL/7j3/2t2qCzKrZsmqZZvwefKDCK4W4fZtxROFsOI3UHeLv6r6G7lseWLlwACNGur5B17DIKBhALCuE6g0iJRGbQmhmtTP/YmdbxueXW2mJreXnfwUM3/cD3f99r3vi9r7vGY6Zx8vgRFgYc2y67EmunT+Wf43wDNjyj05Wz65zsRmxRXaZz82ZArfE4I1VOqOA0R3Y6nQ7a7TbKPkWU0y4ypaHzGsl1ua88TzhOgCpwV63OQXoi52raiSEY4Boc5Tt2yKw2rtTQAiqLIWBx4sgBFlFUqbK7t26qXv6vf+Zf/sD33HLDVXff9ZWtc6eOleuVEtu2ezv67TWkvQ6o1SCkoPqOOEXUBa2jChTiuD3r+gDkzQ9BnUAtKdw2gFrnchJLoaUEBYEmrl03Fx7CqGSNUVJl/ebhE81HTs03T52aXz641Gy/55abXn7jzp276n7o8/njB2koPMBKWFI4QCOPXtvi0DcKQIOCgBGKDNotKKtBTB7rj8d+RSxprUWr1UIqFSq1sjPwyPOWKht9UZKCUe8sAa0X1rkbIRWPy0xrrbUxxuoi286sq3qg1oATi3ojokgTkUpbtwle/t53veb2D33gfVf0281dn/vM75etTvmVl2yjOsuwMH8KpTDCppkpxL2+61pZaAmtQAwDOBkC3GeDFmPCJWTYeHC8oQTJuxwSCiijwD0PlHEAPjgBeE5YS3Vm+r1ssGuqcWr/wVO9//47f5AtL6/Gb37Ta6++aOemHeBhmXqUWU1hlcyPdcyhO+nCsjDy85g7BxPyucubVGVKqbbVJuOFXi5Kz7UcoDjzo1KrI04H4MIbChK5Si0IUKMxhrWO7SyXQT8vAd6kaZoppbrWIgNgC6KXS6JIqLjDMmmrnVW1+7IdpSv+6y/8/O0vvuLSl//tF/6yvrJwRmzZPE0HA4tuc8H98MCDURmavR48zx//KhjjGiEWO9Lmq9maIlB3sTGhI/tJiHA2u/h9tvBoLRgsPL+orzSwzELCOAcJGpozhNXANpsDmaR6lbD+t//6S3ctPvXUEy/+3te9+u1vf/v3vVTG3aox7pATAgJDXNk+506lastgtAvTGCdgoHkbJGugIbW2HWuJ5FI6jmqalwKouIfQd/0DgiBAKpP1BbBi1CqMciCJ5ZAhUKiuIZE5r1i2WJ9vHK54UJ2maU9rvUAIYsaYZcgpHjCUWCMin9Q9K1/+U++/9fYP/PAPXrF04ujuT/3ub1XrJY/t2NJAmnRQKwXodHtQymDnjl1ot/uYP3MsByzGTv0Zg8qK2HbcPKAgM+dAhnuM5UB3bsvHAAPAnY3i8rkZLHVFQgYalhN45Qhl4kPFKXzC9PLKoLW6fPqphfm5ZWIN7Q+6W99521sia5kAcZ0tac4aZNqAMYNMaRDqGhAXJxON7Uhjrc0AGB6GHJ4X5PFMAMgBlFJot7rQFghLAeLMtTvxGIch1DHHjAEIc7wVql3y2bjGQU6QCka7Q0aN6ygAwO1Udz4ks4bSXqz1/szY09aiy6wx1ErCpGUyy6paDnZdfsmmK+74qZ+4/epLLnr5A9/6Wn1tbk5sm52gyAZoryyiVAqR9juoRmXEqcTCwgIY81GfnMRgMIAAIIizi8YCmho34aCwygnPlYsX2iXvD0sLLZNjrtb1scXQno64TdIoEM4Q+SEsIZAqhVQuk9Ts9dAoV2E5QGViggDJyXmz2P760we2bN3UFsI3Bhomk85bNQbQIz6RpWREpclZhATIO4loSwjRFrBcKQNP+MhSF3ZMTU7C5sWs/X4f4Ayce2AgkGnm8E9fwACIkwG4H8Jwi8ykSFUMQgHhe2AZheUMzPcQD7rIYolSqQYYjX6nDSYC2VU49Yk//NSnu71W3GhUVgUxgMnC5nxn+pKLJ6+9/QfedtsHf/QHLz/w9KO77/7rv6rG7RarRT503IfJMpT9EKEIXYlAkiGNM4TlMgwhCKIAWRYjEgyeBaqVEAtrXcRgqIY1xEkG4lFkyQCQGhO1KrrdLkqVMjKjoa2B1BbVaglra20wEFRrFcg0Q5qmQxxaGzX0E5TUwy6SjFEQCnjlAF0Vu/qqcgRppK1OapUNVLp5yw5NCIFVEiZLQGBgKYWBm/MwDJGkPbjW4rnjF6fQmQL3fAtAZlnSNdQobjTyOkgLrRwlUDDimGh+gFav60rSqXM+lDSIZQbGnJpNlQK4HjYPNKZohOSBEoJev48giEAIwaDXB7RBGJbAiLVJlvTPLHeOCaIBkxFqSD3y2OVvecN1L7v99re/4bLd2178J5/8RE3FXSGIoVONCgLKMOisgWiDSrWClaVlVGp1BCKAtq48cHmtBalGfYCyzHF5giiCAUVmNLq5AKtBBBgDmcYwKoOSKUAo+oM+FYHPFufnsGPbdt3t9s3SwiIajcaQ6Ox4QqMK6FHwYoYbl3DnOFBwQMM1NDYZCFXWwDEdjMoAq8Fowd+1SJSrVbU0A4EGtQ5QIoSBU+ta4BllLCWaEGt4Udxa2Is4jmE9ntsWNmLKEcc2owxOtRICTjm01CBFbSrcuVYqt5GMEMc8SPoIPB/1ahlWK8T9ruukZZWZmawi8mjQ7zSnKVHX/Yv3/9Dtt7/jbS84+OwzW7/0xc+XkfRYJQoQcAYtJWKTOeKUcfnQmZlNACVYWlzBWq+Hiy67DLOzs2iudbHaWkOl2rAiAJJMwnieO61dKQjG4fsl+IxBGossy+D7HgALmSZEZknp8isu3X7y8GG6vHBqLgxLnZmJms6yBIQLhJ5At9tFUIpyoz9qY+YIYrmqps7NY2BOEFqDabdzGbHQmfMxaGF3LaC1RJb31WeecQIGARhzDo9xzCmtNaWu/yHhheMyJCXrbBgXJkmCKIpc3s5qgDAI7mASpRTiTEJbF6xqixwoz21LDhqUyxGMUSBWIh4ksFKCWYN6NSTVks8Xz8xVlYfLb77xJS//N//qw68vhezaz/zB/1dba67w6UaVVssRBAFkliDp9UBhMVGtgXJHa1xttlCqVjCzeQvqWiNJNeaXF9GoT5hLLr08OdU+PKhPzuiBsbCgSJIYhnIHSLARY8EYjWq1gkwmkCrhjJgd173w6ve/5vqXVP/yzz77hdXWygPR1PRqrFJtjUapXAGhZWRqo+d+dqOm0f0Ry6Jg+J8v/GF5DwJjzLAc3ZgRJk4Ktn3+Dy/4OKNWLB48wWBSQBkLmZ+pTAyDkgpWmhxXNUgyCRpEUMa91oCCM7gCGuVyQtpk8D0KqwySZICAM1RDn6q0G55cWJm56tKp6z7wYz982+tfffML7vrynVv3PfN4+crLL2Uzpc1YWVpAohN0khSVUoSZqWlkyQDtbgecMgReBMo4pKFQA4lUG4iwZHZetCezlvS+fs8DB+966MDjq53BGi+VDOECvm9BKIeUGkZpJEq5pCyjsHB1lb7HoXQiSh6d+dVf+rnrAjto/PGf/BltryzcF5UqTcuoGvQ7qNUn0e728ubaBViQe7WFqdmQ8SEW4ITCslGvvsJpcq2X8k4qgoIwhky78nlXiOwoN8ZSEEosIcRaa7W1sLxQqVmWuR3ojdhwnDP00j64EPA8gURppFKCw4IyCuEHkCB5OzZHW6TUXehwfeoMcTdFKQow26jRXrvJl+Y61V3bK1d8z5tedOO//siHXnvm5NEX/s5v/lrN54ZffcluujJ/CowYbJ6cQqYkiNbwhQPmtSXOC2YeNOWIKhPoDgY2k9ZYGkjhV3qGBSceefTJA5/94t1fUEH9mdV2b64uAsUog2DcOWPENZ1I+j2UfB9MMCTJANZqNGplnSXdpYVTxx449MxjL/z5j37k+ltufBn9hV/8z+Tw8fkHG1PTzdV2L1tdzYznl/LTCNyOJ8PwxP11O6uABYsd6Zyh8W5jVuu8/bZ1vCmWv9ZSUALY4TkmFJrwAqEYDl6UaxfdHn1GISUgEw3hB+CcQxuJVGkYWHDhj3U9dCeSWzKW+slXF6wFowaB50NlGlxnTA7SMrdy6xWXTl79rrd+/9vfc/vbrvnsp39/S2t1oTRVCRizCq2FOUxUQsBq9NZWUCpXwaxBMujl5GiFcqWGsFRDnEgcPr1oqo2pdHb7tpY05NQ99z904Gt3ff1vFlbMQerjuLRprzoxoYQQNktTaFiYLKNxkrIgCIjvCQ1Ac08giTPX144SQ43t9tsrR+aP7x8cfebBi77v+9924wuv/gPx4Ts+OnHPA48/Va/WjyiIdma0drA2yY9URN5ahgzPLSlUKy36bxc7UGtoI2GMdnCb8xhhrIZVcEcU51RUa3TeXk25hhtE5319ckFaa4eNkgqYzhGTE1gCeKUQvV4HMnHs7FLoPNBUKiRZCk15Xp/pSuWIBaAzUEMhiEHcbtJ61RedtW7NSLz4HW959es/+IH3v8yk/ct/57/9epXqVMxOVIlNYxCjUKuWAKMgsxScOGxRSwURhShXG+gnCpkGTGaMJDy7/JqX9Nb66ZEvfevBx+998OGvzS/2jlqKE0Ej6IP7cq3VNdVSGcZKaBlTSqmARpnqbGvIIwJgPo7jNU9EkrnTaRD3u0Qr2Mjn1iMKy6tz7HOf/YPJF113/U2//4n/tu0Tv/9He//rr/3WZ6Na/QFjSMtYKi2IYbaoAxnDS/NFPYzmh0LEulIJTmjebCrvwqkViNYQARsm202eSDDucBVijCGEEE4ICFfK0QFLpRKq1Spk2oLHKSYnJ5HKDJEfII774CFHtVqFyjSazSYIo5iYmsFSaw1Jv4tZRuBRd1IPMSk86sODZRNTter86aXdey7bfPmP/9h7b3vRlZdde/CZx6YO7HsiFNC0VovAtIQlBkpJJAON0Pfgcx9xmqLf7yMsRbCEo9nuw1JuRFDNaFjthSI6cdd9jx64/9Env3DwyJl94DjNS+VBvx/LdjczpYoH4fvo91p0slYRpVJQbreaO6+66qo9b33bbW/4off+KH7yp3/6L77wxb++t1ott7zAN9nA9WstRwC0IlAJGuUAgyxm9379y9WL91x1xUd+8sc2X/viF5Z//hd/pXz42Nyz2rLjIih1/LCkFpdWEIYl1BoTWOu03dGNaTr0SJVS8AWD57Fh3watNaxyTiajwqndvB6ln/aQJRqBL1AulyGlRHeQwsgMRCrKCBXWgvEg8KG1RqvVQrvdRuSZYa2g1hbdbhfWWnDGh6mrMHSntMZxjMnGBFJDkA16KJUEkh4wOcWo7CR+c6lTSyiuf/+P3Hr7W978piviQXfX3V/+62pzcY7VyyGZmqxj0GlDQyMKA4TVCpIkQWutBQAISmWE5Qo6gxhSG1ttTMra9OZeJ86OPvrk3gOPPLnvzsMnlg9qiuOa854CVdISE05MwlMGcTKgk/WIW5mUm4vNXTu2VPd88CMfuvX1r3/9nqhU2frs4w+v+Iw8xRkeJ4S0MeaUUIBya4XHCUutJLXAAyegp47u94zRkzt3X3rzZz/1u9t+7Td/e//d37zvz/cenHt4ctoub9+2JVtrdezCwjz8vMXb+Ch8kgLGLDhP0NTlQYevGXnDSmUY6BRWq2EPJCsCEE6ttdoQjLXCLvq4OS+WgyjXaydTqSMha6Dfj4d5MU4JlMpgU4r5pRXsCEsQRmGyCtpeHJRnNlWmJiZmr/nQj//Qu6anqjcsnTpSf+bpx4XJErrn4l0gRuLYkcPYsW0LrFHodHuYO9NFqVTB9KatgKVY63SxdGbFTs7MqunGdNxNsrn7Hnn6mX2Hj/zV8VML+1c7yfGUoO/5ZelzbnSiMEhSDNKMCOEJT5BSNmht86m+8kPve8v3v/XNb7z8qsv37Lz33nvLx0+eoW98y9t0yLFTMFIm1FJroQEKYimhYIwREghKWL/XAQhDtd6AHwisLZ1mMhvUtu+69Kr/8kv/YdvX7v5W4xO//8cTd/7tt7/Z7fZPRdV6GoYhSpUKBnGK8dJ2ajGqMzUuD2nGQxCrXZtSU/RsZzCEQEoHGoRBCdyPYDm30hhjjEkBKD7e4joMQwjBIGUGmylEZW+k65Xzmhhx6AnLKRzNlSWUwxCbpiZw6NARFnE0qMXLbnrZi275iQ+8/4aV+aNX7Hv8ofrq8iKrVcoIylUszZ8Eo8AlF+3A2ppTP6XaBMq1aSSZxtJaAlBiuSirzbt3xRpk6eRy58De/Ye+/vjeZx88OZ8cMBSdoMxlyS+ZRLtD1SrVEFUSsTiOS+kg3qpSdfk73/n6N7791je88EV7Lrt4/tiRymd+97cEQOgLrrnOHt33ZOQzbKfERkPDhgJgp4IxVkoGqahXqg7e1BlC4UMQg+b8Cbq8OO+vrC5PvvrmW1527bXXcn7Hv8vue/jJtleOmkkG3el0ILxgRCobywG51Nqo4RSMOyfMWsDo3IYCCP3I9dOlcEdzKAXCNSzVkEbqXJDuAKyCx1l4r2k8gE4sDAgy5QByCgbfCyAYh80POYPVuHjnDiw11xAIEJ/Z6pZNuPGXfum/XLlp884XfOHzn5vurc2HHjN0shogCplbiYGAMQa9Xs/ZCEuQaQoQDglmDBda+KXYL1WWlnvJkf0Hj9z7+FNP3ze32DqkGVaDuhdbykymDJJBH0xwRKFPreyL1ZVBrRTihe98yxtf/+53vu1ll1+y+dLlM8frn//MJ/3O0hJ9wZ492LxpOx5/5nHyslte73vENJiBb4wmIDzvPEUJIYxSwr2VlVVaC9wcxYMuqNGo1aoI/CoM8XDm6AH2GKWV7buv3BEKOhsPuv5Cs01EUEZ9cmZYklB4rWaYBx1XuOOt3cbTgdTxeT0GT4TQKoNVFloqWKotOIwxJgOgue/7Q+KVUgrWy4nJLuWG0A9ychCG5F6lsrwMz6Lf6+DUyaPYvn07/f43v2Hz99zyPbedXliY+NKdXywbo/lE2SObZqZBYLC4uAClFKamJkAIw/LKKir1BqQkaHf6Vhqi6pObBvXaxJml5bXjjz+27777HnvygXavf7QXqyVDEQd+YDQVFpSACQvuWQorRXOpXebAzte98qrLf+gHb3/7i66+6lrowfTX/ubPg6TTpPHaMnntTS9Hc2EBh556GNWohoAZymEEASiMhR3WrBQpLIrdu3ejs3wSg34XHiUIPIa07+A/DYapTdsgbAZOZLy4MHdKa9W/9NI9OjUUc2cWUanU8grusd2+Torr40FXQOyCUMIoer0eGHxEoT8kuGmtwQiBEKIQpOUFi238C8IwBPMFkiSD8AMQMurcr0zeOswClmk0myt4xY3XG8Zh/vtv/gat1qe3EOZ7k/U6Y4whYgZnTh6H0RKNRg0s8rG2ugwDimqtjl4vtmC+qU1OxqXK9OJqq7//699+6KtPPP3sE2eWOicyghUqwiSsVTT3PautQT/pQ6mMAlbUyl45HaQ7X3z1tj0/8oNvv/UNr75lj4o7u5544O7K4UP7eKXqk80zDTRma5g/eRhrCwu46soXYi2xOHb4WXCan6JTOBqg0K600xhjs7VWR68uLYHAYKJeBmcEhljMTNRQm5zBYrODk8cOkcbsNtRrJdSqJcydOUUSxezspq3o92MUtZwbhQaMFfoWnaKpa3oxfmqyUgpZ4npkam2gQQCtwQBjXdbbcIej5sfxEoIkScFBwChBHKdIkgyUsxFvhwGUetBaQkmXOV9ZbtKnnnqGh34QXX7JxezM/DLtrq5g0+YZpIMuauUQhEQw1iLJJIRfgiYEcWaNX64nQbne7Cb24OMPPXbvk0/vv+fMUmu/1FhlQZAyIowCbCw1qE5grKJGZ4ITU/a43Vnmds+HP/zeW9/xljfvUYPOzvvuurM8f/KoKPke3bV5EmFFQMZ9tLspNtXqaPg7sLKygoxF2L5rz3DxUgt3UIu1IM6rVMaYmHOuS5UaQo8i9Bm0ziCLRHyqwcIKJuoVE3p+uri42IzjOCtXpowZ6GFlt7Wu1pMOk+8WsC7gN0o54FwqEKJhKYUy7jooZwgCD7CuiTDLz1vRIDBSwkhprXNvLe/3Faw2CIWHidoEqE3Qaq7CmBSNagNx0oPVCpQzcM5gLHH4H+XwIh8lMYHTc2fAWUhrpQptLa/BAzBRKsHGA2SDLljog3kBlAYybWC5b0RYkdQvdTPNDjy99/jDjz6x964TJ9f2S4vFIBQDIYRJFbGWcgjGwBmhjBjR73XLJjE7r7xias9rXv2KWz/ywffvWZo7tvPxb3+pPH/ymIg8Ti/dOQsrMywtnUHIZxBQB+ovN9cQ+RE0F6BBGa1BhiCqQimAEQ4pFQR1mDNnnjWgst3rG2ph4yRDHGt41CIIQpREhF4/hiIalADdzkBRyhMljWLKIvR9RyulHJQzaC3B8iLhItsh0wwyzZANYpQ8hlIUuuyTlBAeB6UMFoDSCowSN/8GoMwDOEcmpVVSak5h+dRkBKs0lpaW0F1dxlQjwkS9gSQ16PZ7CHyOJBlAS5cwNqDIlARnAkEY4tlnn0Xg+5iYmAIjFFaPDjcxmUKjNoF2v4dmuwXih6YyMSNFqdZrD+SJlfnW/nsfeuzzh48vPtPuYG5yKhxMVGqq2+/bfj8B83xQaMqJFUm/W85ivfOyiyb33H7brbe+6Q2v2rN5qrLzK1/407JMeiLptOhsvYKZiQbm504hSxK8+JprcODoYZQCH4J7TkgiRCYBqQGaaYCyszSeW+baWGu1JwIjM0BLA1gFpQ2kdE2dhF+CtBTa0tyuEjNuCwE4SJAAzLrakuIQNde61mKyMYE+SdFvLiLuthBFESYmJqCVxepaC6VS6BxEYBjbg3DwotVcbn/5YOCoHa4tiUKrs4bAF+44QWOw1FzB7OwsrLVYWlmB53mY3bwJcZzi8KGDiMLA5QcBpEkMkxfIcM5gjcDCahs8CM3kpllVqk/2NBHHj55aOHD/o09+8aln5w6sdXE8iNCr1H01yJRpzi+Ccw/lSpWUSqForc2XdaJ3bZ6M9rztrd936w+/+7Y91GQ7773n7vLnjx4QkSC0Vg4xNVlDKDg6rSYoCAIvwIkTJxH4JQjfA9GO/6KVRCIB42v4DrTMscs8OWw1rKXQ0MZAS2OVkVJaai2i0E2qVhlkpmGZhGW0MKhDztI4M9GuXyDrHjfGoNVqweQhIBeuSW+n0wEsRa1WQ5YleSrLWXClDAjVEM7ZGX421xqWMqLr9ZpFNok0acEYDc4smGAIaQmdXg9CCExNTcHAYnFxHoNeDMYIJicbGPR6GAxiCCZQrlYAUCSDGP1EmomZnSqqN/qg/PSRE6f3PfjYU1/Yu//M/k6ME9RDb2LKl8KPDGUCGhZVZ49ZrzsonT55etv0BK76kR996w/84DvfebmW8c5vffXOcnNlUcxO1eiVl+7GoNtCwBg8QtFvdWC0xuz0DIixOHj4KCa3zEJKC5s50DkQHJR78IIIfhQOa/BNPtFmeHqtNsrqzFprXCW3ASUcQchhtOuuNcgyMF/AFt1Q9Bj1Z4PwzjWMMWi32/BpBm9MML1eD5RwVGr1PCOTb+P8PSRfNHQslOFRJFSSJMna2qqSKrVB4BFYd25yJhNUGnX0ej0YaIBa9DsdLMzPwec+tmzZgpWVFXhegEqlAikVOt0YAEVUKevNsxM9Hk2cODm/fPiZZ/d/5ZlnDz5xei49kih0/QgyLFWM1ASdbgzCMzBGaK/XE0qhdtmenS+69Q03vOGOD/7QyyC7e56492vVA/v3iVqlTLdOVGFVBpIaTFXq6LXWsNhsIgpCbJ7dDJ0qdDo9bNq0DYlSgMchGIVPPXhegNS4+Ey2OrnwNjDq3Knt1kJrzrn1PA8qSdDr9ZAygsAXEMJDQBkyM4Lb1jHt88zHxh05zFNapyobjQaY6WOwtoS1tTYqlQoajQbSRGJ1dXXY248QOsx5DolZY51YeColDDFWWYUkjSGTDNpI+F4JpUoFWZah0Wig3+/i5IkT0Fpiy+wmMCawsrICVzfFkCmLJAOoXzK1WiMTXtCKFX30G3d9+/OHT8w9ffT46gmp0CpXvbTiR6Y3SDG/2IUQBBMTdeoHQnQ6a+VKJHa+9LoXXn7bbW99++tuefl1D3/9zqljB58JjZR0z/atIMSi12275KwNIKWByTSqURVBEGDQdX2AiGWw0uVUXUbdFoUpLuENDZ3EQ4a8O3LYjK9+V+1gDBFCgFt36GiauoNHo5CBc4EsLZj2GAoSluSkYnNOQY7vSK01jHIdt0SptO4QNyGEg0GLRUZGC851Y1Ej1ao0WLkcBdVqlanBEjHa/VBCCMIwhFQpup2WawdGGcphBEY40jiDzCwqtRoGsUSmjCnXJuXMpq29VOPY4088ve+BR5/6y0Pz7UcyhdXM+Remv5ZZSjJEUYDZ2Qb1OBXNldVyM8POl1530Z5/8RM/eutrXv2KPYcOP7vrt3/9l6ss7rIrLtpJqAXWVlZQq9Wwa/NW9Ls9rK2tAcYB+bPT05CZxsrSKiYnJ1GrNXDy9AlorkCZBlXOO4e1oF6EShDBn2iAHDmZgyp2lBTOOaTEgkgpiU4SCLgKbSNcJ+Q0TWGkAmg4xukd48iSHFjA+kKhgvhc8H+Xl5eh4iYqHkGj5hof9uIEnghQiUpDQWqthy1VzzU4Y4BSyqytraHd62LTVA2ElNFsdrCwtIJLLroI6SCGkQrVcg1KKSwuroJQhsbkLM4srZipqa1q+5ZtPUuD4wcOH99//8OP3rn/0PH97RjHU4quBBQVQBj6YGBQSlFipEh6WXmlb3be8JKL9/zoD7/z1le/6qY9K4snd376d3+j3G6tiku2b6Y0KUPHMZS1qEYRiJRYmp8HAJRLkQMmrB0eFzgx1YDSEksrixCBIyf7vjs6IktTh0opC2IojD/IAWwnPGLg2OeWgVhX4UkIIf1eDCiJiUYVgSdgjUKWSkir4UfhOiEV83wh2zj+esB1uGz21rASCtTrdTSmpkHAsLCwgEqllO/AgkA9Us/jZQ88ioTq9/sDAKpcqpo4TmmWJQj8MqLZKuZOnUatUoWVFktLKzYKS2R2djv6cWbnl9pqz+XX9uGVTp9cWNl7z4Nf/8LTew/tb/flCU3QSzSksjBEOA8/lSm1GkIQlGuVaOfMZHXPL/6f/8etu3fM7ol7qzu//JefKi+eOSZmp6t009YaOiunUI3qUHmzfOH5roZQOv+dU8fu63Y6qFQq4L5wapU6vciIBecAFwScMVhDAa1gGYcFXFiVSYQBXEGusaAa8DyBQWZBLLFry2tWMIZqpQzf51AyhTUEnHuwFnmdpTf0/FneGIN6Tp3bHDVzZ4q4ww+VUsMTi4QQmJmZgS77SOMu4jiG1+8jCssOYWMMaRojqpSgjHRV1vnu9/JcJ6UUfDCQrFqvBRNT02z+xAptd9cgGEcYeeCUY2pyFgf3H0BULplLLrlSLq6s8qMnFuymbTvi617+koXDJ+b2Pfz4w19+6PGnHl/t6MOWka5mVFpw45coGCSM0dQTXKhMlWGx8/qXXL3nJ37svbe+5U2v37PvyUd2PnjPV8snjj4rKgGl22froDaFbyz2XLQD+589AliKIAgQhK5mEzy3ZcwgSRNYqmCIxCA/9aBUKsGnHqSRaLY6UFZDWAIGAt/3IHgE44cgYdl5f3lqjhniKpOlslZBxXGabtmyRQ068+h1O+h1DarlCI1GA0oZLK42QbhA0YegsK/nKloqds65xmAwgOr3QazOGwVn8ITrjedqcmpori4jUym2bNkGTQW6gwEQZMNdzQcpMBgMbL/fRyozG/hl4gsPWarR7HTs/Ok5e80116DV6cv7HnqsvXnbbv/FN7xycHp+Zd/n/uaubz5z8PC3T801D/YSNOtT1ZQI36ysriGRGcoioDrTQhuUrVQ7X3H9lXs+/KEP3vqSF12zZ/8zj+/89Y//YrmzuiBqoaDbpmso+Qxa9pEOBlhrD9BaWcaO3buQjh1L0csGyGTiqCmUgoceiMfAQo5er4ckSWCEE8xgkCAsVxwPRrtuzJZ6SKVGksWA7iNTGqkEfG1AaV55RSiEYJZYqF6vZ5PBADLLAGvQ6xlQWPh+iFKphDhbr0LPpVLPJ8BixHGMtNeDLxzyk0iFfi+GF4QwRuHSSy/G5OQk1tpNl+jnPphfG1aSW2vBK2VilIGWmTa1agPVUoBut4uV5TbWmh1y5TXX4qn9B20QlszNr/0+pSw7+s37H9n38GNPf3Fxrf3MakstVGpRXK8K0+72bJJ14HmUVn1PKJWUfYqdL7/+sj0feP+P3/ry6160Z/++p3d++g9+q0yNFDMTJVoPpuDBgkEhS2NAaXgiRCUqg3CG0/NLoJ6PKMqBB1eRA2ktrAKs1dYYA6IpNPWgqTGaeYZSZi2HDSqTjvqYSGhCoTVBN06RGEI504Z6odYENtXGtQJnEgZ5xRkDVldXIeMWSn6ASqUEmcZYWlpCuVxFdWIS/SQDjHFHG5lRmxnH8V3flmb8Vgjd9334vg8SBPCF282p0q7luFRIkgHC0MdEo4aZmRmcObOAzKaY2jK1boFwQgiLonJQKpVZd61NVtdaaC43oSRBY2qLXWz15NXXXt9jfnT8gSef3v/1b93/hYXlzn4NcnIgbc+rhqovpaVaww84tdAiGZgyDbOdMxNiz3/+Dx+79fJLd+9ZXpzf+cnf+rVyMuiKTbOT1GcUvdYSaqUyumtNxIMeQi9Eo+bOurKWQCplDIMmXBgjSrBeAAGACGd3uCfgeZ5K01SVy2VeIbBpmna4EB1rTJ+FNmsNlM0yWJtKeJTAY4JY5otyrVavzGwNyFxrifsikRYQhMJSglg6p0gZjfrkBNYWWu7kO4Su3TYlQ1RGWQ9kw0lEo3H2udEbd6eUctj7VmvHaOTcVYVLbdBoNHDy5EksLnBccdXlqFQqyKxrkWPyfC4A8G7XUEIIl1LS+flFyDSBxzmmZrboyektg67S84dPLzx59ze+/Vf79i/stx6OS41eLK0qVyPT6Q8QhB5lFKLbTcsywc49l5X2fOD9P3br+97zzj333v2lnX/5h58sD+KeuOLyS0ilMkv63TbSNIbPgSTuYnZ21hKyRa81O3qtq1AtlxD4JauY6u+67KLTA5kO4jg2rX6MeJDmJwVxcO7Z5ZVT6draWicIohKlVHf6vcNZlh1O4vSE1Got1dCuyCeGIEAofMJFWClNTl0xuWXXpWfa/UdTSxe5hUqVLMi4UAQwxCIMQwx8H71WG2tra5ioV3PwQ6PZ6YJ5YhifFnzgc6nWjQq3AA6KmFFr7epPjIEXRuDMG4IM5XIZSqaYn5+H5wWY2boD3XR9q3HueQAlDGnq0lITE1OmUa1lUvPO3MLi0w/vO3j3o8/sv3etNdjn1/xON5HS+sJUKhHpDvrUD0PRH8RllWLnnkuqLif4mlv2zJ0+vvMXPvavSjWPeS99wdUkCD0cO3ZInV46ZaqNKqYm6vC9EEppwPKUUH+5MVVpttYG8sxKxw76bW0oObXvq/f8baLkKSmlllIjyyTiQYo4TiGltoEf6WZzIF0bBGHTVHYBdGSGfmaRihKsNIBJXKoq4IAFBIIjTwe1/dXS7OZWps2qEELHRjk1LxggAEU06fbazkP03DG83W4XVit4XuDibDPeKavoN0fGQob1qnXj8DwPWggYzwNMNhQsIaPTZsPQx9TkJrS7LZw6NYfa1Cw8rwrP90HcAPdCH5YKJNY3ojyTNKZn+lLq4089vW//E3sPfe6p48uPa47FfoxYqtT6EYGFov3WmqAM5bUudl73wh173vOut9/6ule9Yk9r5czOr3zpzpJK+uIVN9xgzGAgzywsW8ZJumnLriXuibXV1VV1eq5pB+kCrGG20x00V5q9h1qtwRPtTtzudmLb6ScmzeTACno6kaovpVvUnLkiGWsJtKLQTKCvYDPCCVUMxhDj+74h1Bhite0rCcINmO+6e4BTZKnJen3EKm4v1q0wjHETRRF6/a7jjAoOacGSTHuZItRCICj7EMyV4TW7KaJIICxVkEoLRnyAe/lRFTzvUmYB41Jc1LriJmJdWARXOqktobIXS5MMFKQCQDxoQmEUoOF2Y602gUOHDoIKD35YQ7N9Ep1BhrLHIKWllhIPAON9qU1CgnSA0lo4c9n8vlNzB+++664vnjw2fyCzOJ4J0U0kFOEGvrBEKSMY0eXZCX/n7HRjz8997N/eevHuHZcNOms7v/HlO8P26hK7aNcOW452dRbnlxYJvE47DdKlUwsr33708L2dXveZfi/u95PUppnCUrNvtUEqDVa0QdO4g1NAKAEoM1oTbahvSOBWsxw/EoZTZFqD1Mp5bxH3GoUcVSEcBByWOvAmtRaZNbC+tdy3moLqfpJg+9ZtWF1dhc5STM1OY3HhDKWW8c3bLi1NTO/AYpxKShkUZWglKaJoErxcx+nlVUjCsHryZLrr6htlGNZNt3MMk5ELlwbNJvxSGQYW1XIZ3VYT9XKIpJvYNMNAGnK6n5E93G+QwI8INRLaSFilYKzz1PuDDDt3X4400+glErsvfzFaPQvlGbmpXibTU7M1cui0xykX/ZltO55txfLkX3/xC185cuDQgTTWJ6pl0ff8IOsPpLXWUmO00NqUSiHZ+cIXXnHZe95525u+/9Y3XnrvPV/f+cgD90b9XleXgvDU5EWXdNrtdvr0U88uzc8vffPgoVMHklT3evEgyVIsKYOWsZDSFeaCB447pi3RhlhjCbWg7iiI4rghS/ITC6j7W+T1LIHLgRK3A8YfL/J+xQkAw3rkMWAc1kJwDq0UKAE8LmA1wKhvjFHZwnJ7YanZf6bV15mrcSIYaB9GCqi+xlpikaoMsSHy2cMnDjA/HFRqZauUwtraGoIgyDs/Ah4lQN4uzg8ClXndheW13t8eO70kGORmZhUj0CA6c6C91jBWQSYpCBPQ1iJJJTJjoQmHCI6rqHroSKrMChe+JBdftr0yPTWxc+nMHGk1m2cYIX2jtKQgttO3PCwzP830RODT2Ze+9CU7f+S97/7eV73ypp1zp4+Xv/GNuymsUp1OJ+u211aaK6vfOn7k+P6jR1e7aYq4UsZiP0bbWijrOkK40/WYcw9MXkVo4NQlKAGhHJbmhpy41iQmV0+WuhPMi/uGAIKydfc3/rWGYOOhb867dEWdRWfoTKbD+71eD0opurlRqYi0tyPtDMqMggoBaA0w4dCxdhcQIWAINeX6RG+Q6hOptj0elEyaSUzMTmOpuQZjFEpBCBnHKEceiFJYW1oQu7dvaSS93hZmVUSJJoy4YmJrtevnCsAox1/mHoOxQKY0wH3wIDCGiEGpNnHq1JmFNgkqHuUUTCYZAo9oR3c0wmOi1OslWyuVcOZ1r3vdi95+29uu2blzOzty5FD1gQfvHZw+ffJxQu3C008/fabb7fbbbZXIDIu+j5YQrlvzoA9dLhNDCLOEEFhCxvJ++U4iuSCIQ21swQ0ac9uHSpOQYfV+8ZdRuu7++F8Q19Zk47D5MirqXpRSYNzt3CzLRlwbmVBfa0bcuS/gRasgVyKCTAFhiUJaoN0zpjFZ00QEJs4ypFKDBR6CyIcxrposSwYQhILBottswqOUUqM5gXFCHBqHUalImrkHPeEW5iAFCAO4APop7NT0hMqMMWRyywRmZ6bQWm2itbZKKEhJa7PzJS9+8e7b3/H2V1y6e3e51+uUDx06pJ548rF7T82dPD4YDDora6vL8wsynpwkg0FiVabyguU84c7zQDcdxKOCTkqKLgtDoQnhlrcTNICxAxKstcjnd6gyKchZKnSoSs+hegtBbsxAFIIscNDi8LbiRFvGKAbdjos9c0+UWMBi1AyKMoZUZvCCEJpSlMp1ZMYgSTWmZmYQpwP0kx4ADc4YtFSANvAZh5UaWZJAywysKLobi1FckbJGGAmkyjEILCjiWLq6EOEhySSY8BGWyiCbLtqCXruNUhihMVHju3fs3PqqV73qzbVKdcuDD9zXWVucf+b0yRNry8vLA0uwqLXsNrtSaQ3ll2CTGBYc1gtc1h2EI8vUsOuiJ0YMvPG/BTMvG8upFRNv4BhmAMBcXukslVlU9BJjz1K94yoYGrCEDGuJR39dYalVjg8QCA8a7vh6Kjh8zpEkKbRUYMW5I0VCF+78MOS9a0EJgrAEaQwSpWEswezmLVheXoTnEzBGhuC5zhzxquQFSAbJCJe1dLxgK0+FGRBqIKUDxglnsIaAMArhBaCUIc5SlKIKyMzF21Atl7C4sAClJLn0ootLrVZr28mjp7x6PeqZdLBKDdJUwmQKmlIYvwQrhAcFC849gLszNAZxAqMJ/KiMUtklelutJixGmexRbeVop2w8oqTYeW4nugVxvp04/nixI8d3ptXmrMcN7PB5LR1DkBR93wAQSnMVTWGUO/+KMQYGC6WLw9FofihaiF4cw/N99JMUhLpCWkIIut02wsgHp3TYCURLjSxOUCqVINPxxr90SLIq7gOOn6O1O6iVcHd4TSozADQ/kM01t/r/AVTrS/3i5ohaAAAAAElFTkSuQmCC" alt="LazimFix" class="brand-logo">
+      <div class="brand-text">
+        <h1>LAZIMFIX <span class="badge-crm">CRM</span></h1>
+        <p>Dubai Facilities Management Operations & Revenue Engine</p>
+      </div>
+    </div>
+
+    <!-- Active User Role Selector (Kordic Inspired) -->
+    <div class="role-box">
+      <span class="role-label">Active Role:</span>
+      <select id="userRoleSelect" class="role-select" onchange="changeUserRole(this.value)">
+        <option value="admin">👑 Managing Director (Qaium Miah)</option>
+        <option value="operations">👷 FM Operations Manager (Eng. Rashid)</option>
+        <option value="sales">💼 Service Coordinator / Sales (Sarah J.)</option>
+        <option value="accountant">📊 Finance & Accountant (Audit Role)</option>
+      </select>
+    </div>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      <button class="btn btn-gold" onclick="openNewLeadModal()">
+        <span>+</span> Add Lead / Emergency Job
+      </button>
+      <a href="https://wa.me/971503760371" target="_blank" class="btn btn-wa">
+        <span>💬</span> 24/7 Hotline
+      </a>
+    </div>
+  </header>
+
+  <!-- Sub Navigation Tabs -->
+  <div class="nav-tabs">
+    <div class="nav-tab active" id="tab-pipeline" onclick="switchTab('pipeline')">
+      <span>📊</span> Pipeline Board (Kanban)
+    </div>
+    <div class="nav-tab" id="tab-audit" onclick="switchTab('audit')">
+      <span>💳</span> Accountant Audit & Payments
+      <span class="tab-badge" id="auditBadgeCount">1</span>
+    </div>
+    <div class="nav-tab" id="tab-invoicing" onclick="switchTab('invoicing')">
+      <span>🧾</span> UAE 5% VAT Invoicing & Quotes
+    </div>
+    <div class="nav-tab" id="tab-emergency" onclick="switchTab('emergency')">
+      <span>⚡</span> Rapid SLA Dispatch (< 45 Min)
+    </div>
+    <div class="nav-tab" id="tab-accounts" onclick="switchTab('accounts')">
+      <span>🏢</span> Dubai B2B Accounts & Towers
+    </div>
+  </div>
+
+  <!-- KPI Summary Banner -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <span class="kpi-title">Total Active Pipeline</span>
+      <span class="kpi-value" id="kpiPipelineVal">AED 91,200</span>
+      <span class="kpi-sub">Across 6 Live Dubai Projects</span>
+    </div>
+    <div class="kpi-card verified">
+      <span class="kpi-title">Verified Bank Revenue</span>
+      <span class="kpi-value" id="kpiRevenueVal">AED 20,750</span>
+      <span class="kpi-sub">Audited & Confirmed by Accounts</span>
+    </div>
+    <div class="kpi-card audit">
+      <span class="kpi-title">Pending Accountant Audit</span>
+      <span class="kpi-value" id="kpiPendingAuditVal">AED 8,500</span>
+      <span class="kpi-sub">1 Payment awaiting verification</span>
+    </div>
+    <div class="kpi-card stale">
+      <span class="kpi-title">Stale Leads Alert (7d+)</span>
+      <span class="kpi-value" id="kpiStaleVal">1 Lead</span>
+      <span class="kpi-sub" style="color:var(--danger)">Requires immediate outreach</span>
+    </div>
+  </div>
+
+  <!-- Main Content Views -->
+  <main>
+    
+    <!-- 1. KANBAN PIPELINE VIEW -->
+    <div class="view-content active" id="view-pipeline">
+      <div class="kanban-board" id="kanbanBoard">
+        <!-- Generated Dynamically via JS -->
+      </div>
+    </div>
+
+    <!-- 2. ACCOUNTANT AUDIT VIEW (Kordic Signature) -->
+    <div class="view-content" id="view-audit">
+      <div class="audit-container">
+        <div class="audit-header">
+          <div>
+            <h2 style="font-size:1.3rem; color:var(--gold); font-weight:800;">Accountant Payment Audit & Confirmation</h2>
+            <p style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">
+              Kordic Workflow: Field agents record collections. The company accountant verifies with bank statement before revenue is locked.
+            </p>
+          </div>
+          <button class="btn btn-outline" onclick="renderAuditTable()">🔄 Refresh Ledger</button>
+        </div>
+
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Lead / Client</th>
+              <th>Recorded By</th>
+              <th>Payment Method</th>
+              <th>Amount (AED)</th>
+              <th>Audit Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="auditTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. INVOICING & QUOTES VIEW -->
+    <div class="view-content" id="view-invoicing">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 style="color:var(--gold); font-size:1.25rem;">UAE 5% VAT Invoicing & Quotation Engine</h2>
+        <button class="btn btn-gold" onclick="openNewInvoiceModal()">+ Create New Invoice / Quote</button>
+      </div>
+      <div class="invoice-card-grid" id="invoiceGrid">
+        <!-- Invoices populated here -->
+      </div>
+    </div>
+
+    <!-- 4. EMERGENCY SLA DISPATCH VIEW -->
+    <div class="view-content" id="view-emergency">
+      <div class="audit-container">
+        <h2 style="color:var(--gold); font-size:1.25rem; margin-bottom:8px;">⚡ Dubai < 45-Min Emergency MEP Dispatch Center</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">
+          Live GPS tracking & rapid dispatch for high-priority chiller failures, water pipe bursts, and electrical trips.
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <div style="background:#09190F; padding:18px; border-radius:12px; border:1px solid var(--emerald);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-weight:800; color:#fff;">Downtown Dubai Chiller Trip</span>
+              <span style="background:var(--danger); color:#fff; font-size:0.7rem; padding:2px 6px; border-radius:4px; font-weight:800;">ACTIVE SLA</span>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:8px 0;">Boulevard Tower 2 • Floor 18 HVAC Outage</p>
+            <div style="font-size:1.2rem; font-weight:800; color:var(--gold);">ETA: 18 Minutes Remaining</div>
+            <p style="font-size:0.75rem; color:#A7F3D0; margin-top:4px;">Assigned: Eng. Rashid Khan (Van #04)</p>
+          </div>
+          <div style="background:#09190F; padding:18px; border-radius:12px; border:1px solid var(--border-subtle);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-weight:800; color:#fff;">Business Bay Pump Leak</span>
+              <span style="background:var(--emerald); color:#fff; font-size:0.7rem; padding:2px 6px; border-radius:4px; font-weight:800;">RESOLVED (38 MIN)</span>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:8px 0;">Al Saada Tower • Basement 2 Booster Pump</p>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Handover signed by Facility Director</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. DUBAI ACCOUNTS & TOWERS VIEW -->
+    <div class="view-content" id="view-accounts">
+      <div class="audit-container">
+        <h2 style="color:var(--gold); font-size:1.25rem; margin-bottom:8px;">🏢 Dubai Commercial Accounts & Property Portfolio</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">
+          Multi-contact corporate account directory (Kordic B2B Account model).
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+          <div style="background:#09190F; padding:18px; border-radius:12px; border:1px solid var(--border-gold);">
+            <h3 style="color:#fff; font-size:1rem; font-weight:800;">Emaar Marina Promenade</h3>
+            <p style="font-size:0.78rem; color:var(--text-muted);">Dubai Marina • 3 Residential Towers (850 Units)</p>
+            <hr style="border:none; border-top:1px solid rgba(255,255,255,0.08); margin:12px 0;">
+            <div style="font-size:0.75rem; color:#D1D5DB; display:flex; flex-direction:column; gap:4px;">
+              <div><strong>Primary Contact:</strong> Tariq Al-Mansoor (FM Director)</div>
+              <div><strong>Phone:</strong> +971 50 123 4567</div>
+              <div><strong>Email:</strong> tariq@marinapromenade.ae</div>
+              <div><strong>Active AMC:</strong> Chiller Chemical Maintenance & Coil Care</div>
+            </div>
+          </div>
+          <div style="background:#09190F; padding:18px; border-radius:12px; border:1px solid var(--border-gold);">
+            <h3 style="color:#fff; font-size:1rem; font-weight:800;">Al Saada Tower Owners Association</h3>
+            <p style="font-size:0.78rem; color:var(--text-muted);">Business Bay • 32 Floors Commercial Office Tower</p>
+            <hr style="border:none; border-top:1px solid rgba(255,255,255,0.08); margin:12px 0;">
+            <div style="font-size:0.75rem; color:#D1D5DB; display:flex; flex-direction:column; gap:4px;">
+              <div><strong>Primary Contact:</strong> Eng. Mohannad Al-Sayed</div>
+              <div><strong>Phone:</strong> +971 55 432 1098</div>
+              <div><strong>Email:</strong> facilities@alsaadatower.com</div>
+              <div><strong>Active AMC:</strong> 24/7 MEP Emergency Dispatch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: AI PRE-CALL BRIEFING (Signature Kordic Feature) -->
+  <div class="modal-overlay" id="aiBriefingModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">🤖 AI Pre-Call Briefing · <span id="aiLeadTitle">Acme Corp</span></div>
+        <button class="modal-close" onclick="closeModal('aiBriefingModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Part 1: Situation Overview -->
+        <div class="ai-card">
+          <span class="ai-tag blue">1. Situation Overview</span>
+          <div class="ai-content" id="aiSituationText">
+            Client requested quote for commercial chiller descaling across 4 roof units. Last activity 2 days ago. Budget confirmed at AED 18,500. Decision maker is Technical FM Director.
+          </div>
+        </div>
+
+        <!-- Part 2: What to Say / Winning Strategy -->
+        <div class="ai-card">
+          <span class="ai-tag green">2. What to Say (Winning Value Props)</span>
+          <div class="ai-content" id="aiStrategyText">
+            • Emphasize LazimFix 100% in-house certified engineers (zero third-party subcontracting).<br>
+            • Highlight certified +38% airflow restoration and -18% DEWA energy consumption reduction.<br>
+            • Reference compliance with Dubai Municipality HSE & DCD safety standards.<br>
+            • Offer immediate 45-minute emergency MEP priority dispatch SLA guarantee.
+          </div>
+        </div>
+
+        <!-- Part 3: What to Watch Out For / Risk Flags -->
+        <div class="ai-card">
+          <span class="ai-tag red">3. What to Watch Out For (Risk Flags)</span>
+          <div class="ai-content" id="aiRisksText">
+            • Tenant quiet-hours restriction between 1:00 PM and 3:00 PM in residential towers.<br>
+            • Competitor quote may exclude water chemicals disposal compliance certificate.<br>
+            • Ensure Ejari / Building Permit access clearance is received 24 hours prior.
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:8px;">
+          <button class="btn btn-outline" onclick="closeModal('aiBriefingModal')">Close</button>
+          <a id="aiWhatsAppCallBtn" href="#" target="_blank" class="btn btn-wa">
+            💬 Open WhatsApp Call / Chat
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: RECORD PAYMENT (Sales Rep) -->
+  <div class="modal-overlay" id="recordPaymentModal">
+    <div class="modal-box" style="max-width:500px;">
+      <div class="modal-header">
+        <div class="modal-title">💳 Record Client Payment</div>
+        <button class="modal-close" onclick="closeModal('recordPaymentModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.82rem; color:var(--text-muted);">
+          Recorded payments enter the <strong>Accountant Audit Queue</strong> for bank reconciliation before final verification.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Client / Lead</label>
+          <input type="text" id="payLeadName" class="form-input" readonly>
+          <input type="hidden" id="payLeadId">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Amount Collected (AED)</label>
+          <input type="number" id="payAmount" class="form-input" placeholder="e.g. 5000">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select id="payMethod" class="form-select">
+            <option value="Direct Bank Transfer (FAB / ENBD)">Direct Bank Transfer (FAB / ENBD)</option>
+            <option value="Cheque (Company / Personal)">Cheque (Company / Personal)</option>
+            <option value="Cash with Official Receipt">Cash with Official Receipt</option>
+            <option value="Credit Card / Payment Link">Credit Card / Payment Link</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Reference / Cheque # / Bank Slip</label>
+          <input type="text" id="payRef" class="form-input" placeholder="e.g. Cheque #558912 or Transfer Ref">
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:12px;">
+          <button class="btn btn-outline" onclick="closeModal('recordPaymentModal')">Cancel</button>
+          <button class="btn btn-gold" onclick="submitRecordPayment()">Submit for Accountant Audit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD NEW LEAD / EMERGENCY JOB -->
+  <div class="modal-overlay" id="newLeadModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">+ Add New Lead or Job</div>
+        <button class="modal-close" onclick="closeModal('newLeadModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Client / Property Name *</label>
+            <input type="text" id="newLeadClient" class="form-input" placeholder="e.g. Damac Hills Villa 42">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Person *</label>
+            <input type="text" id="newLeadPerson" class="form-input" placeholder="e.g. Omar Khalid">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">WhatsApp / Phone *</label>
+            <input type="text" id="newLeadPhone" class="form-input" placeholder="+971 50 XXX XXXX">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dubai Area / Zone</label>
+            <select id="newLeadLoc" class="form-select">
+              <option value="Downtown Dubai">Downtown Dubai</option>
+              <option value="Dubai Marina">Dubai Marina</option>
+              <option value="Palm Jumeirah">Palm Jumeirah</option>
+              <option value="Business Bay">Business Bay</option>
+              <option value="DIFC">DIFC</option>
+              <option value="Jumeirah Lake Towers (JLT)">Jumeirah Lake Towers (JLT)</option>
+              <option value="Dubai Hills Estate">Dubai Hills Estate</option>
+              <option value="Deira / Bur Dubai">Deira / Bur Dubai</option>
+              <option value="Other Dubai Area">Other Dubai Area</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Service Category</label>
+            <select id="newLeadService" class="form-select">
+              <option value="Commercial Chiller & HVAC Maintenance">Commercial Chiller & HVAC Maintenance</option>
+              <option value="Italian Diamond Marble Restoration">Italian Diamond Marble Restoration</option>
+              <option value="24/7 MEP Emergency Response">24/7 MEP Emergency Response</option>
+              <option value="Fitout Handover Deep Cleaning">Fitout Handover Deep Cleaning</option>
+              <option value="Annual Maintenance Contract (AMC)">Annual Maintenance Contract (AMC)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Estimated Contract (AED)</label>
+            <input type="number" id="newLeadValue" class="form-input" placeholder="e.g. 12500">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Assign Field Engineer / Rep</label>
+            <select id="newLeadAssignee" class="form-select">
+              <option value="Eng. Rashid Khan">Eng. Rashid Khan (HVAC Specialist)</option>
+              <option value="Sarah Jenkins">Sarah Jenkins (Client Coordinator)</option>
+              <option value="Unassigned">Unassigned (Queue)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Initial Stage</label>
+            <select id="newLeadStage" class="form-select">
+              <option value="new_inquiry">1. New Inquiry / Call</option>
+              <option value="site_audit_scheduled">2. Site Audit Scheduled</option>
+              <option value="quotation_sent">3. Quotation & BoQ Sent</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Technical Job Notes</label>
+          <textarea id="newLeadNotes" class="form-textarea" rows="2" placeholder="Details of chiller tonnage, marble sq meters, or electrical failure..."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:12px;">
+          <button class="btn btn-outline" onclick="closeModal('newLeadModal')">Cancel</button>
+          <button class="btn btn-gold" onclick="submitCreateLead()">Create Lead in Pipeline</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TAX INVOICE PRINT VIEW -->
+  <div class="modal-overlay" id="taxInvoiceModal">
+    <div class="modal-box" style="max-width:750px;">
+      <div class="modal-header">
+        <div class="modal-title">🧾 Dubai Official Tax Invoice (UAE 5% VAT)</div>
+        <button class="modal-close" onclick="closeModal('taxInvoiceModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="taxInvoiceBody">
+        <!-- Rendered formatted Dubai Tax Invoice -->
+      </div>
+      <div style="padding:16px 24px; border-top:1px solid var(--border-subtle); display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn btn-outline" onclick="closeModal('taxInvoiceModal')">Close</button>
+        <button class="btn btn-gold" onclick="window.print()">🖨️ Print / Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Pipeline Stages Configuration
+    const STAGES = [
+      { id: 'new_inquiry', title: '1. New Inquiry', color: '#F4AE16' },
+      { id: 'site_audit_scheduled', title: '2. Site Audit', color: '#3B82F6' },
+      { id: 'quotation_sent', title: '3. Quote / BoQ Sent', color: '#8B5CF6' },
+      { id: 'lpo_approved', title: '4. LPO Approved', color: '#EC4899' },
+      { id: 'job_in_progress', title: '5. In Progress', color: '#10B981' },
+      { id: 'handover_signoff', title: '6. Handover Sign-off', color: '#14B8A6' },
+      { id: 'paid_closed', title: '7. Paid & Verified', color: '#22C55E' }
+    ];
+
+    let currentRole = 'admin';
+    let appData = { leads: [], invoices: [] };
+
+    // Fetch initial data
+    
+    // Standalone LocalStorage Sync Fallback
+    const INITIAL_DATA = {
+  "leads": [
+    {
+      "id": "lead-101",
+      "clientName": "Emaar Marina Promenade",
+      "contactPerson": "Tariq Al-Mansoor",
+      "phone": "+971501234567",
+      "email": "tariq@marinapromenade.ae",
+      "location": "Dubai Marina, Tower 3",
+      "service": "Commercial Chiller & HVAC Maintenance",
+      "value": 18500,
+      "stage": "job_in_progress",
+      "owner": "Qaium Miah",
+      "assignee": "Eng. Rashid Khan",
+      "daysInactive": 1,
+      "notes": "Emergency coil cleaning and chemical descaling completed. Final CFM airflow testing underway.",
+      "paidAmount": 9250,
+      "paymentStatus": "partially_paid",
+      "paymentPendingAudit": false,
+      "history": ["Lead created on 24 Oct", "Site survey completed 25 Oct", "50% Advance AED 9,250 confirmed by Accounts"]
+    },
+    {
+      "id": "lead-102",
+      "clientName": "Palm Jumeirah Signature Villa 28",
+      "contactPerson": "Alexander Wright",
+      "phone": "+971529876543",
+      "email": "alex.wright@dubaiinvest.com",
+      "location": "Palm Jumeirah, Frond N",
+      "service": "Italian Diamond Marble Restoration",
+      "value": 14200,
+      "stage": "quotation_sent",
+      "owner": "Qaium Miah",
+      "assignee": "Sarah Jenkins",
+      "daysInactive": 2,
+      "notes": "Client requested crystallization of 380 sqm Italian Crema Marfil marble lobby and majlis.",
+      "paidAmount": 0,
+      "paymentStatus": "unpaid",
+      "paymentPendingAudit": false,
+      "history": ["Lead created via WhatsApp", "Quotation QUO-2026-088 sent (AED 14,200 + 5% VAT)"]
+    },
+    {
+      "id": "lead-103",
+      "clientName": "Al Saada Tower Business Bay",
+      "contactPerson": "Eng. Mohannad Al-Sayed",
+      "phone": "+971554321098",
+      "email": "facilities@alsaadatower.com",
+      "location": "Business Bay, Marasi Drive",
+      "service": "24/7 MEP Emergency Response",
+      "value": 8500,
+      "stage": "handover_signoff",
+      "owner": "Qaium Miah",
+      "assignee": "Eng. Rashid Khan",
+      "daysInactive": 0,
+      "notes": "Main electrical busbar feeder tripping resolved within 38 minutes SLA. Handover signed.",
+      "paidAmount": 8500,
+      "paymentStatus": "payment_recorded_by_rep",
+      "paymentPendingAudit": true,
+      "auditPendingAmount": 8500,
+      "auditRecordedBy": "Eng. Rashid Khan",
+      "auditMethod": "Cheque #40912 Dubai Islamic Bank",
+      "history": ["Emergency dispatched (<45 min)", "Issue rectified", "Cheque received by Engineer; waiting for Accountant confirmation"]
+    },
+    {
+      "id": "lead-104",
+      "clientName": "Downtown Boulevard Luxury Penthouse",
+      "contactPerson": "Fatima Al-Zahra",
+      "phone": "+971508899112",
+      "email": "fatima.z@boulevarddubai.ae",
+      "location": "Downtown Dubai, Opera District",
+      "service": "Fitout Handover Deep Cleaning",
+      "value": 6800,
+      "stage": "site_audit_scheduled",
+      "owner": "Qaium Miah",
+      "assignee": "Sarah Jenkins",
+      "daysInactive": 8,
+      "notes": "Post-renovation deep scrubbing and glass façade polishing. Inspection scheduled for Wednesday.",
+      "paidAmount": 0,
+      "paymentStatus": "unpaid",
+      "paymentPendingAudit": false,
+      "history": ["Lead entered from Website form", "No contact for 8 days - Stale lead flag active!"]
+    },
+    {
+      "id": "lead-105",
+      "clientName": "DIFC Gate Precinct Office 402",
+      "contactPerson": "Marcus Vance",
+      "phone": "+971542233445",
+      "email": "m.vance@difccapital.ae",
+      "location": "DIFC, Gate Building 4",
+      "service": "Commercial Chiller & HVAC Maintenance",
+      "value": 32000,
+      "stage": "new_inquiry",
+      "owner": "Qaium Miah",
+      "assignee": "Unassigned",
+      "daysInactive": 1,
+      "notes": "Annual HVAC AMC inquiry for 12,000 sq ft headquarters. Energy efficiency audit requested.",
+      "paidAmount": 0,
+      "paymentStatus": "unpaid",
+      "paymentPendingAudit": false,
+      "history": ["Inquiry received on WhatsApp Hotline (+971 50 376 0371)"]
+    },
+    {
+      "id": "lead-106",
+      "clientName": "Jumeirah Golf Estates Villa 112",
+      "contactPerson": "David Sterling",
+      "phone": "+971561122334",
+      "email": "david@sterlings.co.uk",
+      "location": "Jumeirah Golf Estates, Whispering Pines",
+      "service": "Italian Diamond Marble Restoration",
+      "value": 11500,
+      "stage": "paid_closed",
+      "owner": "Qaium Miah",
+      "assignee": "Sarah Jenkins",
+      "daysInactive": 4,
+      "notes": "Full travertine & bottochino restoration completed. Paid via FAB transfer. Account confirmed.",
+      "paidAmount": 11500,
+      "paymentStatus": "paid_and_verified",
+      "paymentPendingAudit": false,
+      "history": ["Quoted", "LPO signed", "Work completed", "Payment AED 11,500 verified by Accountant"]
+    }
+  ],
+  "invoices": [
+    {
+      "invoiceNumber": "INV-2026-0041",
+      "leadId": "lead-101",
+      "clientName": "Emaar Marina Promenade",
+      "issueDate": "2026-10-24",
+      "dueDate": "2026-11-07",
+      "items": [
+        {"description": "Commercial Chiller Chemical Descaling & Coil Pressure Jetting", "qty": 2, "rate": 6000, "total": 12000},
+        {"description": "Certified CFM Static Airflow Calibration & Microbial Sanitize", "qty": 1, "rate": 5571.43, "total": 5571.43}
+      ],
+      "subtotal": 17571.43,
+      "vat": 878.57,
+      "total": 18450,
+      "status": "Partially Paid (AED 9,250 received)"
+    },
+    {
+      "invoiceNumber": "INV-2026-0042",
+      "leadId": "lead-103",
+      "clientName": "Al Saada Tower Business Bay",
+      "issueDate": "2026-10-25",
+      "dueDate": "2026-10-25",
+      "items": [
+        {"description": "24/7 Rapid Emergency MEP Diagnostics & Feeder Breaker Repair", "qty": 1, "rate": 8095.24, "total": 8095.24}
+      ],
+      "subtotal": 8095.24,
+      "vat": 404.76,
+      "total": 8500,
+      "status": "Pending Accountant Audit"
+    }
+  ]
+}
+;
+    
+    async function loadCRMData() {
+      try {
+        const local = localStorage.getItem('lazimfix_crm_data');
+        if (local) {
+          appData = JSON.parse(local);
+        } else {
+          appData = INITIAL_DATA;
+          localStorage.setItem('lazimfix_crm_data', JSON.stringify(appData));
+        }
+        renderAll();
+      } catch (err) {
+        appData = INITIAL_DATA;
+        renderAll();
+      }
+    }
+
+    function saveLocal() {
+      try {
+        localStorage.setItem('lazimfix_crm_data', JSON.stringify(appData));
+      } catch(e) {}
+    }
+
+    function changeUserRole(role) {
+      currentRole = role;
+      renderAll();
+    }
+
+    // Tab Navigation
+    function switchTab(tabId) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+
+      const activeTab = document.getElementById(`tab-${tabId}`);
+      const activeView = document.getElementById(`view-${tabId}`);
+      if (activeTab) activeTab.classList.add('active');
+      if (activeView) activeView.classList.add('active');
+
+      if (tabId === 'audit') renderAuditTable();
+      if (tabId === 'invoicing') renderInvoices();
+    }
+
+    // Render KPI Metrics
+    function renderKPIs() {
+      let totalPipeline = 0;
+      let verifiedRev = 0;
+      let pendingAudit = 0;
+      let staleCount = 0;
+
+      appData.leads.forEach(l => {
+        totalPipeline += (l.value || 0);
+        verifiedRev += (l.paidAmount || 0);
+        if (l.paymentPendingAudit) {
+          pendingAudit += (l.auditPendingAmount || 0);
+        }
+        if (l.daysInactive >= 7) {
+          staleCount++;
+        }
+      });
+
+      document.getElementById('kpiPipelineVal').innerText = `AED ${totalPipeline.toLocaleString()}`;
+      document.getElementById('kpiRevenueVal').innerText = `AED ${verifiedRev.toLocaleString()}`;
+      document.getElementById('kpiPendingAuditVal').innerText = `AED ${pendingAudit.toLocaleString()}`;
+      document.getElementById('kpiStaleVal').innerText = `${staleCount} Lead${staleCount === 1 ? '' : 's'}`;
+
+      const auditBadge = document.getElementById('auditBadgeCount');
+      const pendingAuditLeads = appData.leads.filter(l => l.paymentPendingAudit).length;
+      auditBadge.innerText = pendingAuditLeads;
+      auditBadge.style.display = pendingAuditLeads > 0 ? 'inline-block' : 'none';
+    }
+
+    // Render Kanban Board
+    function renderKanban() {
+      const board = document.getElementById('kanbanBoard');
+      board.innerHTML = '';
+
+      STAGES.forEach(stage => {
+        const stageLeads = appData.leads.filter(l => l.stage === stage.id);
+
+        const col = document.createElement('div');
+        col.className = 'kanban-column';
+        col.innerHTML = `
+          <div class="column-header">
+            <div class="column-title-wrap">
+              <span class="column-bullet" style="background:${stage.color}"></span>
+              <h3>${stage.title}</h3>
+            </div>
+            <span class="column-count">${stageLeads.length}</span>
+          </div>
+          <div class="column-cards" ondragover="allowDrop(event)" ondrop="dropLead(event, '${stage.id}')">
+            ${stageLeads.map(l => createLeadCardHTML(l)).join('')}
+          </div>
+        `;
+        board.appendChild(col);
+      });
+    }
+
+    // Lead Card HTML
+    function createLeadCardHTML(l) {
+      const isStale = l.daysInactive >= 7;
+      const staleBadge = isStale 
+        ? `<span class="stale-badge stale-alert">⚠ ${l.daysInactive}d Inactive</span>`
+        : `<span class="stale-badge stale-fresh">${l.daysInactive}d ago</span>`;
+
+      const auditPill = l.paymentPendingAudit 
+        ? `<div class="audit-warning-pill">⏳ Audit Pending: AED ${(l.auditPendingAmount||0).toLocaleString()}</div>`
+        : '';
+
+      return `
+        <div class="lead-card ${isStale ? 'stale-lead' : ''}" draggable="true" ondragstart="dragLead(event, '${l.id}')">
+          <div class="card-top">
+            <div>
+              <div class="lead-name">${l.clientName}</div>
+              <div class="lead-loc">📍 ${l.location}</div>
+            </div>
+            ${staleBadge}
+          </div>
+
+          <span class="service-tag">${l.service}</span>
+          ${auditPill}
+
+          <div class="card-meta">
+            <span class="card-value">AED ${(l.value||0).toLocaleString()}</span>
+            <span class="card-assignee">👤 ${l.assignee}</span>
+          </div>
+
+          <div class="card-actions">
+            <button class="btn-micro wa" title="Quick WhatsApp" onclick="openLeadWhatsApp('${l.id}')">💬 Chat</button>
+            <button class="btn-micro" title="AI Pre-Call Briefing" onclick="openAIBriefing('${l.id}')">🤖 AI</button>
+            <button class="btn-micro" title="Record Payment" onclick="openRecordPaymentModal('${l.id}')">💳 Pay</button>
+            <button class="btn-micro" title="Generate Tax Invoice" onclick="viewTaxInvoice('${l.id}')">🧾 Inv</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Drag and Drop
+    function dragLead(ev, leadId) {
+      ev.dataTransfer.setData("leadId", leadId);
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    async function dropLead(ev, newStage) {
+      ev.preventDefault();
+      const leadId = ev.dataTransfer.getData("leadId");
+      if (!leadId) return;
+
+      const lead = appData.leads.find(l => l.id === leadId);
+      if (lead) {
+        lead.stage = newStage;
+        lead.daysInactive = 0;
+        renderAll();
+
+        try {
+          await fetch('/api/update-stage', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ leadId, newStage })
+          });
+        } catch (e) { console.error("Sync error:", e); }
+      }
+    }
+
+    // Render Accountant Audit Table (Signature Kordic Workflow)
+    function renderAuditTable() {
+      const tbody = document.getElementById('auditTableBody');
+      const auditLeads = appData.leads.filter(l => l.paymentPendingAudit || l.paymentStatus === 'payment_recorded_by_rep');
+
+      if (auditLeads.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" style="text-align:center; padding:30px; color:var(--text-muted);">
+              ✅ All payments have been audited and verified with bank statement! No pending records.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = auditLeads.map(l => `
+        <tr>
+          <td>
+            <strong>${l.clientName}</strong><br>
+            <span style="font-size:0.75rem; color:var(--text-muted);">${l.location}</span>
+          </td>
+          <td>
+            ${l.auditRecordedBy || l.assignee}<br>
+            <span style="font-size:0.7rem; color:var(--text-dim);">${l.auditMethod || 'Bank Deposit'}</span>
+          </td>
+          <td>${l.auditMethod || 'Transfer Slip'}</td>
+          <td style="color:var(--gold); font-weight:800; font-size:1rem;">
+            AED ${(l.auditPendingAmount || l.paidAmount).toLocaleString()}
+          </td>
+          <td><span class="audit-badge-pending">⏳ Pending Bank Reconciliation</span></td>
+          <td>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-gold" style="padding:4px 10px; font-size:0.75rem;" onclick="auditAction('${l.id}', 'confirm')">
+                ✓ Confirm & Lock
+              </button>
+              <button class="btn btn-outline" style="padding:4px 8px; font-size:0.75rem; color:var(--danger);" onclick="auditAction('${l.id}', 'reject')">
+                ✗ Reject
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Accountant Audit Action
+    async function auditAction(leadId, action) {
+      const note = action === 'confirm' 
+        ? "Verified in Emirates NBD Statement" 
+        : prompt("Enter reason for rejection:");
+      
+      if (action === 'reject' && !note) return;
+
+      try {
+        const res = await fetch('/api/audit-payment', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ leadId, action, note })
+        });
+        if (res.ok) {
+          const resp = await res.json();
+          appData = resp.data;
+          renderAll();
+          renderAuditTable();
+          alert(action === 'confirm' ? "Payment Confirmed! Locked into revenue." : "Payment Rejected.");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Open AI Briefing Modal (Signature Kordic Feature)
+    function openAIBriefing(leadId) {
+      const lead = appData.leads.find(l => l.id === leadId);
+      if (!lead) return;
+
+      document.getElementById('aiLeadTitle').innerText = `${lead.clientName} (${lead.service})`;
+      document.getElementById('aiSituationText').innerHTML = `
+        <strong>Client:</strong> ${lead.clientName} (${lead.contactPerson || 'FM Director'})<br>
+        <strong>Scope:</strong> ${lead.service} at ${lead.location}.<br>
+        <strong>Contract Value:</strong> AED ${(lead.value||0).toLocaleString()} (VAT Applicable).<br>
+        <strong>Pipeline Stage:</strong> ${lead.stage.replace(/_/g, ' ').toUpperCase()}. Inactive for ${lead.daysInactive} days.
+      `;
+
+      let talkingPoints = `
+        • <strong>Zero Subcontracting:</strong> LazimFix uses 100% in-house uniformed technicians.<br>
+        • <strong>< 45-Min Emergency SLA:</strong> Fast response guaranteed anywhere in Dubai.<br>
+        • <strong>DEWA Energy Reduction:</strong> High-efficiency HVAC chemical coil descaling restores up to +38% airflow.<br>
+        • <strong>Dubai Municipality & DCD:</strong> Fully aligned with Dubai Civil Defence safety codes.
+      `;
+      if (lead.service.includes('Marble')) {
+        talkingPoints = `
+          • <strong>Italian Diamond Crystallization:</strong> Restoring up to 98.6 Gloss Units.<br>
+          • <strong>Zero Dust Slurry System:</strong> Safe for occupied hotels, corporate lobbies, and luxury villas.<br>
+          • <strong>Sealer Protection:</strong> 12-month hydro-phobic protection against spills and foot traffic.
+        `;
+      }
+      document.getElementById('aiStrategyText').innerHTML = talkingPoints;
+
+      document.getElementById('aiRisksText').innerHTML = `
+        • <strong>Building Permits:</strong> Ensure Ejari/developer NOC is prepared for weekend access.<br>
+        • <strong>Competitor Comparison:</strong> Many competitors use acid wash which damages marble or coils; emphasize LazimFix non-corrosive chemical standards.
+      `;
+
+      document.getElementById('aiWhatsAppCallBtn').href = `https://wa.me/${(lead.phone||'971503760371').replace(/[^0-9]/g, '')}?text=Dear%20${encodeURIComponent(lead.contactPerson||'Sir')}%2C%20following%20up%20from%20LazimFix%20Dubai%20regarding%20your%20${encodeURIComponent(lead.service)}%20inquiry...`;
+
+      openModal('aiBriefingModal');
+    }
+
+    // Direct WhatsApp
+    function openLeadWhatsApp(leadId) {
+      const lead = appData.leads.find(l => l.id === leadId);
+      if (!lead) return;
+      const phone = (lead.phone || '971503760371').replace(/[^0-9]/g, '');
+      const msg = encodeURIComponent(`Hi ${lead.contactPerson || 'Sir'}, this is LazimFix Facilities Management Dubai. Following up on your property in ${lead.location} regarding ${lead.service}. When is a good time to review the proposal?`);
+      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+    }
+
+    // Open Record Payment Modal
+    function openRecordPaymentModal(leadId) {
+      const lead = appData.leads.find(l => l.id === leadId);
+      if (!lead) return;
+      document.getElementById('payLeadId').value = lead.id;
+      document.getElementById('payLeadName').value = `${lead.clientName} (AED ${lead.value.toLocaleString()})`;
+      document.getElementById('payAmount').value = lead.value - (lead.paidAmount||0);
+      openModal('recordPaymentModal');
+    }
+
+    async function submitRecordPayment() {
+      const leadId = document.getElementById('payLeadId').value;
+      const amount = parseFloat(document.getElementById('payAmount').value);
+      const method = document.getElementById('payMethod').value;
+      const ref = document.getElementById('payRef').value;
+
+      if (!amount || isNaN(amount)) {
+        alert("Please enter a valid payment amount!");
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/record-payment', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            leadId,
+            amount,
+            method: `${method} (${ref})`,
+            repName: currentRole === 'operations' ? 'Eng. Rashid Khan' : 'Sarah Jenkins'
+          })
+        });
+
+        if (res.ok) {
+          const resp = await res.json();
+          appData = resp.data;
+          renderAll();
+          closeModal('recordPaymentModal');
+          alert("Payment recorded! It is now pending Accountant Audit.");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // View Tax Invoice
+    function viewTaxInvoice(leadId) {
+      const lead = appData.leads.find(l => l.id === leadId);
+      if (!lead) return;
+
+      const subtotal = (lead.value / 1.05);
+      const vat = lead.value - subtotal;
+
+      const html = `
+        <div class="tax-invoice-sheet">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #0D2015; padding-bottom:14px;">
+            <div>
+              <h1 style="color:#0D2015; font-size:1.4rem; font-weight:800;">LAZIMFIX FACILITIES MANAGEMENT</h1>
+              <p style="color:#4B5563; font-size:0.75rem;">Dubai, United Arab Emirates • TRN: 100492817200003</p>
+              <p style="color:#4B5563; font-size:0.75rem;">Hotline: +971 50 376 0371 • www.lazimfix.com</p>
+            </div>
+            <div style="text-align:right;">
+              <h2 style="color:#F4AE16; font-size:1.2rem; font-weight:800;">TAX INVOICE</h2>
+              <p style="font-size:0.75rem; font-weight:700;">INV-2026-${lead.id.replace('lead-', '0')}</p>
+              <p style="font-size:0.75rem; color:#6B7280;">Date: 26 Oct 2026</p>
+            </div>
+          </div>
+
+          <div style="margin:16px 0; display:flex; justify-content:space-between;">
+            <div>
+              <p style="font-size:0.72rem; color:#6B7280; text-transform:uppercase;">Billed To:</p>
+              <strong style="font-size:0.95rem;">${lead.clientName}</strong>
+              <p style="color:#4B5563;">Attn: ${lead.contactPerson || 'Property Director'}</p>
+              <p style="color:#4B5563;">${lead.location}, Dubai, UAE</p>
+            </div>
+            <div style="text-align:right;">
+              <p style="font-size:0.72rem; color:#6B7280; text-transform:uppercase;">Payment Status:</p>
+              <strong style="color:${lead.paidAmount >= lead.value ? '#10B981' : '#F59E0B'}">
+                ${lead.paidAmount >= lead.value ? 'PAID & VERIFIED ✓' : 'PARTIALLY PAID / OUTSTANDING'}
+              </strong>
+            </div>
+          </div>
+
+          <table class="inv-print-table">
+            <thead>
+              <tr>
+                <th>Service Description</th>
+                <th style="text-align:center;">Qty</th>
+                <th style="text-align:right;">Unit Price (AED)</th>
+                <th style="text-align:right;">Amount (AED)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>${lead.service}</strong><br><span style="font-size:0.7rem; color:#6B7280;">Full site execution, certified equipment, HSE safety compliance</span></td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:right;">${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td style="text-align:right;">${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display:flex; justify-content:flex-end;">
+            <div style="width:240px; font-size:0.8rem; display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; justify-content:space-between;">
+                <span>Subtotal (Excl. VAT):</span>
+                <span>AED ${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span>UAE VAT (5%):</span>
+                <span>AED ${vat.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+              </div>
+              <hr style="border:none; border-top:1px solid #D1D5DB;">
+              <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1rem; color:#0D2015;">
+                <span>Total Amount:</span>
+                <span style="color:#F4AE16;">AED ${lead.value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px; padding:12px; background:#F3F4F6; border-radius:6px; font-size:0.72rem; color:#4B5563;">
+            <strong>Bank Wire Instructions:</strong><br>
+            Bank: Emirates NBD • Account Name: LazimFix Facilities Management LLC<br>
+            IBAN: AE030200000012345678901 • Swift: EBILAEADXXX
+          </div>
+        </div>
+      `;
+
+      document.getElementById('taxInvoiceBody').innerHTML = html;
+      openModal('taxInvoiceModal');
+    }
+
+    // Modal Helpers
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function openNewLeadModal() { openModal('newLeadModal'); }
+
+    // Create New Lead Handler
+    async function submitCreateLead() {
+      const client = document.getElementById('newLeadClient').value.trim();
+      const person = document.getElementById('newLeadPerson').value.trim();
+      const phone = document.getElementById('newLeadPhone').value.trim();
+      const loc = document.getElementById('newLeadLoc').value;
+      const service = document.getElementById('newLeadService').value;
+      const val = parseFloat(document.getElementById('newLeadValue').value) || 5000;
+      const assignee = document.getElementById('newLeadAssignee').value;
+      const stage = document.getElementById('newLeadStage').value;
+      const notes = document.getElementById('newLeadNotes').value.trim();
+
+      if (!client || !person || !phone) {
+        alert("Please fill in Client Name, Contact Person, and Phone Number!");
+        return;
+      }
+
+      const newLead = {
+        clientName: client,
+        contactPerson: person,
+        phone: phone,
+        email: `${person.toLowerCase().replace(/[^a-z]/g, '')}@dubai.ae`,
+        location: loc,
+        service: service,
+        value: val,
+        stage: stage,
+        owner: "Qaium Miah",
+        assignee: assignee,
+        notes: notes || "Direct lead created in LazimFix CRM"
+      };
+
+      try {
+        const res = await fetch('/api/create-lead', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ lead: newLead })
+        });
+        if (res.ok) {
+          const resp = await res.json();
+          appData = resp.data;
+          renderAll();
+          closeModal('newLeadModal');
+          alert("Lead successfully added to LazimFix Pipeline!");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Render Invoices View
+    function renderInvoices() {
+      const grid = document.getElementById('invoiceGrid');
+      grid.innerHTML = appData.leads.map(l => {
+        const subtotal = (l.value / 1.05);
+        const vat = l.value - subtotal;
+        return `
+          <div class="inv-box">
+            <div class="inv-top">
+              <span class="inv-num">INV-2026-${l.id.replace('lead-', '0')}</span>
+              <span style="font-size:0.75rem; color:${l.paidAmount >= l.value ? '#10B981' : '#F59E0B'}; font-weight:700;">
+                ${l.paidAmount >= l.value ? 'Paid & Audited ✓' : 'AED ' + (l.value - l.paidAmount).toLocaleString() + ' Due'}
+              </span>
+            </div>
+            <div>
+              <strong style="color:#fff;">${l.clientName}</strong>
+              <p style="font-size:0.75rem; color:var(--text-muted);">${l.service}</p>
+            </div>
+            <div style="font-size:0.8rem; background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:6px; display:flex; justify-content:space-between;">
+              <span>Total Incl. 5% VAT:</span>
+              <strong style="color:var(--gold);">AED ${l.value.toLocaleString()}</strong>
+            </div>
+            <button class="btn btn-outline" style="width:100%; font-size:0.78rem;" onclick="viewTaxInvoice('${l.id}')">
+              📄 View Tax Invoice
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Master Render
+    function renderAll() {
+      renderKPIs();
+      renderKanban();
+    }
+
+    // Startup
+    window.addEventListener('DOMContentLoaded', () => {
+      loadCRMData();
+    });
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+
+</body>
+</html>
